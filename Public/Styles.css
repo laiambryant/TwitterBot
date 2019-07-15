@@ -1,0 +1,22 @@
+.title{
+  text-align: center;
+  font-size: 100px;
+}
+h1 {
+  font-family: 'Bahianita', cursive;
+  text-align: center;
+  color:red;
+
+  }
+
+body{
+  background-color: black;
+}
+
+.comrade {
+  border-radius: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 10%;
+}
