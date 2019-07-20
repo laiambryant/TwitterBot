@@ -20,12 +20,10 @@ mongoose.connect(CONNECTIONSTRING, {useNewUrlParser:true});
 mongoose.Promise = global.Promise;
 
 app.use(express.static('Public'));
-
+//IMPORTANT: bodyParser has to have priority over Router
+//otherwise you won't be able to read the json for the requests you get
 app.use(bodyParser.json());
 
-//IMPORTANT: Router has to have priority over bodyparser
-//otherwise you won't recieve requests and you won't be able
-//to parse them
 app.use("/api",router);
 
 //422 Unprocessable Entity error handler
