@@ -1,0 +1,42 @@
+{
+  "name": "package",
+  "version": "1.0.0",
+  "description": "Twitter Botnet",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "ejs": "^2.6.2",
+    "express": "^4.17.1",
+    "express-sessions": "^1.0.6",
+    "mongoose": "^5.6.4",
+    "passport": "^0.4.0",
+    "passport-oauth": "^1.0.0",
+    "passport-twitter": "^1.0.4",
+    "ws": "^7.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "nodemon app.jsnp",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/laiambryant/TwitterBot.git"
+  },
+  "keywords": [
+    "twitter",
+    "bot",
+    "git",
+    "repo",
+    "repository",
+    "liam",
+    "bryant",
+    "api"
+  ],
+  "author": "Liam Bryant",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/laiambryant/TwitterBot/issues"
+  },
+  "homepage": "https://github.com/laiambryant/TwitterBot#readme"
+}

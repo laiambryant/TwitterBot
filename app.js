@@ -2,12 +2,19 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const app = express();
-const router = require("./API/api");
+const apiRoutes = require("./API/api");
+const authRoutes = require("./API/auth_routes");
+const passSetup = require("./Services/passport_setup");
+const sessions = require("express-sessions");
+const Keys = require("./Services/Keys");
+const passport = require("passport");
+
 //the connection string has the following format
 const CONNECTIONSTRING = 'mongodb://localhost/botnet';
-
+//port connected to on the Localhost
+const PORT =4040;
 //default console message
-const consoleMsg = function(){console.log("Server Listening for requests");};
+const consoleMsg = function(){console.log("Server Listening for requests at the port: " + PORT);};
 
 //connect do MongoDb
 //{useNewUrlParser:true} is inserted because the old
@@ -19,12 +26,17 @@ mongoose.connect(CONNECTIONSTRING, {useNewUrlParser:true});
 //overrided to the global Promise
 mongoose.Promise = global.Promise;
 
+//The html will be in the Public folder
 app.use(express.static('Public'));
-//IMPORTANT: bodyParser has to have priority over Router
-//otherwise you won't be able to read the json for the requests you get
+
+//give access to the JSON body parser
 app.use(bodyParser.json());
 
-app.use("/api",router);
+//IMPORTANT: bodyParser has to have priority over routes
+//otherwise you won't recieve requests and you won't be able
+//to parse them
+app.use("/api", apiRoutes);
+app.use("/auth", authRoutes);
 
 //422 Unprocessable Entity error handler
 app.use(function(err,req,res,next){
@@ -33,4 +45,4 @@ app.use(function(err,req,res,next){
 
 
 //listen for requests
-app.listen(process.env.PORT || 4040, consoleMsg);
+app.listen(process.env.PORT || PORT, consoleMsg);
