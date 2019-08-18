@@ -10,9 +10,10 @@ passport.use(new Strategy({
     consumerSecret: Keys.twitter.TWITTER_CONSUMER_SECRET,
     access_token_key: Keys.twitter.ACCESS_TOKEN,
     access_token_secret: Keys.twitter.ACCESS_TOKEN_SECRET
-  },  function(token, tokenSecret, profile, done) {
+  }, function(token, tokenSecret, profile, cb) {
+    
+  }
 
-    }
 ));
 
 
