@@ -3,9 +3,10 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
 const app = express();
+const routes = require("./API/routes");
 const apiRoutes = require("./API/api");
 const authRoutes = require("./API/auth_routes");
-const ejsRoutes = require("./API/ejs_routes");
+const profileRoutes = require("./API/profile_routes");
 const expressSession = require("express-session");
 const Keys = require("./Services/Keys");
 const passport = require("passport");
@@ -61,9 +62,10 @@ app.use(passport.session());
 //IMPORTANT: bodyParser has to have priority over routes
 //otherwise you won't recieve requests and you won't be able
 //to parse them
+app.use("/", routes)
 app.use("/api", apiRoutes);
 app.use("/auth", authRoutes);
-app.use(ejsRoutes);
+app.use("/profile", profileRoutes);
 
 //422 Unprocessable Entity error handler
 app.use(function(err,req,res,next){

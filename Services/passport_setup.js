@@ -8,24 +8,32 @@ const Utilities = require("./Utility_Functions");
 
 
 passport.use(new Strategy({
+    //Data required for passport Strategy, stored in the Keys file
     callbackURL: CB_URL,
     consumerKey: Keys.twitter.TWITTER_CONSUMER_KEY,
     consumerSecret: Keys.twitter.TWITTER_CONSUMER_SECRET,
     access_token_key: Keys.twitter.ACCESS_TOKEN,
     access_token_secret: Keys.twitter.ACCESS_TOKEN_SECRET,
+    //necessary for Oauth 1.0
     proxy:trustProxy
   },function (access_token, refresh_token, profile, cb) {
     //checks if user already exists in db
-    Bot.findOne({tw_id:profile._json.id}).then((currentUser)=>{
-      if(currentUser){
+    Bot.findOne({tw_id:profile._json.id}).then((currentBot)=>{
+      if(currentBot){
+
         //User already exists
-        console.log("User is: " + currentUser);
+        console.log("User is: " + currentBot);
+        cb(null, currentBot);
+
       } else {
 
         //User doesn't exist, create new instance in DB
         new Bot({
-      
+
+          //Creates a Random Id, algorithm is in the Utility_Functions file
           my_id: Utilities.guid_generator,
+
+          //data from the twitter api to save to the db
           username: profile._json.username,
           tw_id: profile._json.id,
           tw_id_str: profile._json.id_str,
@@ -33,27 +41,31 @@ passport.use(new Strategy({
           tw_screen_name: profile._json.screen_name,
           followers: profile._json.followers_count,
           friends: profile._json.friends_count
-    
+
         }).save().then((newBot)=>{
     
           console.log("new Bot created" + newBot);
-    
+          cb(null,newBot);
+
         });    
+      
       }
+
     })
-   
+
   }
+
 ));
 
+passport.serializeUser(function(user, cb) {
+  cb(null, user.id);
+});
 
-passport.serializeUser(function(user, callback) {
-  console.log('serializeUser: ' + user._id)
-  return callback(null, user._id);
-})
-
-passport.deserializeUser(function(obj, callback) {
-  return callback(null, obj);
-})
+passport.deserializeUser(function(obj, cb) {
+  Bot.findById(obj).then((bot)=>{
+    cb(null, obj);
+  });
+});
 
 
 module.exports = passport;
