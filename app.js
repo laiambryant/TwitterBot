@@ -13,11 +13,12 @@ const passport = require("passport");
 //the connection string has the following format
 const CONNECTIONSTRING = 'mongodb://localhost/botnet';
 //port connected to on the Localhost
-const PORT =4040;
+const PORT = 3000;
 //default console message
 const consoleMsg = function(){console.log("Server Listening for requests at the port: " + PORT);};
 //Sessions Key
 const SESSIONS_KEY = Keys.SECRET;
+
 
 //connect do MongoDb
 //{useNewUrlParser:true} is inserted because the old
@@ -29,17 +30,23 @@ mongoose.connect(CONNECTIONSTRING, {useNewUrlParser:true});
 //overrided to the global Promise
 mongoose.Promise = global.Promise;
 
-//ejs view engine
-app.set("view engine", "ejs");
 //static files
 app.use(express.static("views"));
+//ejs view engine
+app.set("view engine", "ejs");
+
 
 //sessions
 app.use(expressSession({ 
   secret: SESSIONS_KEY,
-  cookie: { maxAge: 60000 },
-  resave:false,
-  saveUninitialized:false
+  key : "sid",
+  cookie: { 
+    maxAge: 60000,
+    //secure should become true when site is https enabled
+    secure: false
+  },
+  resave: true,
+  saveUninitialized:true
 }))
 
 //give access to the cookie parser
@@ -56,7 +63,7 @@ app.use(passport.session());
 //to parse them
 app.use("/api", apiRoutes);
 app.use("/auth", authRoutes);
-app.use("/", ejsRoutes);
+app.use(ejsRoutes);
 
 //422 Unprocessable Entity error handler
 app.use(function(err,req,res,next){

@@ -5,16 +5,38 @@ const schema = mongoose.Schema;
 //create schema for our bots
 const botSchema = new schema({
 
-
-    id:{
+    my_id:{
         type:String,
-        required: [true, "Id is required"],
     },
 
     username:{
-        type:String,
-        required: [true, "Name is required"]
+        type:String
     },
+    
+    tw_id:{
+        type:Number
+    },
+
+    tw_id_str:{
+        type:String
+    },
+
+    tw_name:{
+        type:String
+    },
+
+    tw_screen_name : {
+        type:String
+    },
+
+    followers:{
+        type:Number
+    },
+
+    friends:{
+        type:Number
+    }
+
 
 });
 

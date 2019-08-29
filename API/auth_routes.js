@@ -9,11 +9,10 @@ router.get("/twitter", passport.authenticate("twitter", {
 }));
 
 
-router.get('/twitter/callback', passport.authenticate('twitter', {
-     failureRedirect: '/login'
-    }),function(req, res) {
+router.get('/twitter/callback', passport.authenticate('twitter', {failureRedirect: '/login'}),
+  function(req, res) {
     // Successful authentication, redirect home.
-    res.redirect('/');
+    res.render('welcome');
   });
 
 module.exports = router;
