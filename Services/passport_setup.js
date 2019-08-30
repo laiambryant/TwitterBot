@@ -6,7 +6,7 @@ const Bot = require("../Models/bot");
 const trustProxy = false;
 const Utilities = require("./Utility_Functions");
 
-
+//Passport Setup
 passport.use(new Strategy({
     //Data required for passport Strategy, stored in the Keys file
     callbackURL: CB_URL,
@@ -43,7 +43,7 @@ passport.use(new Strategy({
           friends: profile._json.friends_count
 
         }).save().then((newBot)=>{
-    
+          
           console.log("new Bot created" + newBot);
           cb(null,newBot);
 
@@ -58,10 +58,12 @@ passport.use(new Strategy({
 ));
 
 passport.serializeUser(function(user, cb) {
+  //serializes User
   cb(null, user.id);
 });
 
 passport.deserializeUser(function(obj, cb) {
+  //finds instance of bot in the MongoDB bot and deserializes it
   Bot.findById(obj).then((bot)=>{
     cb(null, obj);
   });

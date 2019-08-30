@@ -42,7 +42,8 @@ app.use(expressSession({
   secret: SESSIONS_KEY,
   key : "sid",
   cookie: { 
-    maxAge: 60000,
+    //1 day
+    maxAge: 1000*60*60*24 ,
     //secure should become true when site is https enabled
     secure: false
   },
