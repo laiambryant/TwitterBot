@@ -59,7 +59,7 @@ passport.use(new Strategy({
 
 passport.serializeUser(function(user, cb) {
   //serializes User
-  cb(null, user.id);
+  cb(null, user);
 });
 
 passport.deserializeUser(function(obj, cb) {

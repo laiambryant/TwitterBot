@@ -8,7 +8,7 @@ router.get("/welcome", function (req, res) {
         res.redirect("/profile/loginFailed");
     } else {
         //If logged in
-        res.render("welcome", {bot:req.bot}); 
+        res.render("welcome", {user:req.user}); 
     }
 });
 
@@ -19,12 +19,19 @@ router.get("/loginFailed", function(req,res){
     res.redirect("/auth/twitter");
 })
 
+router.get("/logout",function(req,res){
+    //logs out
+    req.logOut;
+    //redirects to main page
+    res.redirect("index");
+})
+
 router.get("/msg",function(req,res){
-    res.render("message", {bot:req.bot});
+    res.render("message", {user:req.user});
 });
 
 router.get("/tof",function(req,res){
-    res.render("thread_of_fate", {bot:req.bot} );
+    res.render("thread_of_fate", {user:req.user} );
 });
 
 module.exports = router;
