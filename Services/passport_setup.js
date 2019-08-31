@@ -40,7 +40,7 @@ passport.use(new Strategy({
           tw_name: profile._json.name,
           tw_screen_name: profile._json.screen_name,
           followers: profile._json.followers_count,
-          friends: profile._json.friends_count
+          friends: profile._json.friends_count,
 
         }).save().then((newBot)=>{
           

@@ -37,7 +37,6 @@ const botSchema = new schema({
         type:Number
     }
 
-
 });
 
 
