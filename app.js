@@ -2,7 +2,6 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
-const app = express();
 const routes = require("./Routes/routes");
 const apiRoutes = require("./API/api");
 const authRoutes = require("./Routes/auth_routes");
@@ -10,6 +9,9 @@ const profileRoutes = require("./Routes/profile_routes");
 const expressSession = require("express-session");
 const Keys = require("./Services/Keys");
 const passport = require("passport");
+const socket = require("socket.io");
+
+const app = express();
 
 //the connection string has the following format
 const CONNECTIONSTRING = 'mongodb://localhost/botnet';
@@ -19,6 +21,7 @@ const PORT = 3000;
 const consoleMsg = function(){console.log("Server Listening for requests at the port: " + PORT);};
 //Sessions Key
 const SESSIONS_KEY = Keys.SECRET;
+
 
 
 //connect do MongoDb
@@ -31,10 +34,13 @@ mongoose.connect(CONNECTIONSTRING, {useNewUrlParser:true});
 //overrided to the global Promise
 mongoose.Promise = global.Promise;
 
+
+
 //static files
-app.use(express.static("views"));
+app.use(express.static("public"));
 //ejs view engine
 app.set("view engine", "ejs");
+
 
 
 //sessions
@@ -51,14 +57,20 @@ app.use(expressSession({
   saveUninitialized:true
 }))
 
+
+
 //give access to the cookie parser
 app.use(cookieParser());
 //give access to the JSON body parser
 app.use(bodyParser.json());
 
+
+
 //Passport Utilities
 app.use(passport.initialize());
 app.use(passport.session());
+
+
 
 //IMPORTANT: bodyParser has to have priority over routes
 //otherwise you won't recieve requests and you won't be able
@@ -68,11 +80,23 @@ app.use("/api", apiRoutes);
 app.use("/auth", authRoutes);
 app.use("/profile", profileRoutes);
 
+
+
 //422 Unprocessable Entity error handler
 app.use(function(err,req,res,next){
   res.status(422).send({error:err.message});
 });
 
 
+
 //listen for requests
-app.listen(process.env.PORT || PORT, consoleMsg);
+var server = app.listen(process.env.PORT || PORT, consoleMsg);
+
+//WebSocket
+const io = socket(server);
+
+io.on("connection", function(socket){
+  socket.on("chatmsg", function(data){
+    io.emit("chat",data);
+  });
+});

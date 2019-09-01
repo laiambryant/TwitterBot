@@ -65,7 +65,7 @@ passport.serializeUser(function(user, cb) {
 passport.deserializeUser(function(obj, cb) {
   //finds instance of bot in the MongoDB bot and deserializes it
   Bot.findById(obj).then((bot)=>{
-    cb(null, obj);
+    cb(null, bot);
   });
 });
 

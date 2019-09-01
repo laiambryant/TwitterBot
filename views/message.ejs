@@ -34,6 +34,20 @@
         background-color: red;
       }
     
+      input{
+        padding: 10px 20px;
+        box-sizing: border-box;
+        background: #eee;
+        border: 0;
+        display: block;
+        width: 100%;
+        background: black;
+        border: 1px solid rgb(255, 3, 3);
+        font-size: 25px;
+        font-family: 'Bahianita', cursive;
+        color:white;
+      }
+
       a.button {
         font-family: 'Bahianita', cursive;
         text-align: center;
@@ -47,38 +61,104 @@
         color:blue;
         cursor:grabbing;
       } 
+
+      #chat{
+        max-width: 60%;
+        margin: 30px auto;
+        border: 1px solid #ddd;
+        box-shadow: 1px 3px 5px red(0,0,0,0.05);
+        border-radius: 2px;
+      }
+
+      #view{
+        height: 400px;
+        overflow: auto;
+        background: black;
+      }
+
+      #send{
+        font-size:25px;
+        border:3px;
+        padding: 12px 0;
+        width:100%;
+        border-radius: 0 0 2px 2px;
+        font-family: 'Bahianita', cursive;
+      }
+
+      #send:hover{
+        background-color:red;
+      }
+      
+      #output{
+        font-family: 'Bahianita', cursive;
+        color:red;
+        font-size : 21px;
+        overflow:auto;
+        padding-left:12px;
+      }
+
     </style>
     <meta charset="utf-8">
     <title>Twitter Botnet</title>
-    <link rel="stylesheet" href="/Styles.css">
     <link href="https://fonts.googleapis.com/css?family=Bahianita&display=swap" rel="stylesheet">
   </head>
   <body>
-    <H1 class = "title"> You have become a Bot in the Botnet <H2>
-    <div id = "homepage">
-      <h1>You gave us access to your Twitter account</h1>
-      <h1>You are contributing to the cause</h1>
-      <h1>Thank you comrade</h1>
+    
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+
+
+    <h1 class="title">COMRADE CHAT</h1>
+
+    <div id = "chat">
+      <div id = "view">
+          <div id = "output">
+            <p>Welcome to the comrade chat</p>
+          </div>
+      </div>
+      <input type="text" id = "username" value = "<%=user.tw_name%>"/>
+      <input type="text" id = "message" placeholder = "message"/>
+      <button id = "send">Send</button>
+    </div>
+
+    <div id="Unsubscribe">
+      <h3>Press the BETRAY button to logout</h1>
+      <a class = "button" href="/profile/logout">BETRAY THE USSR</a>
     </div>
 
     <script>
-        function validateMSG(){
-            
-        }
-    </script>
+        var socket = io();
+        $("document").ready(function(){
+          
+          const ADDR = "http://127.0.0.1:3000";
+  
+          const front_end_socket = io.connect(ADDR);
+  
+          //Query to the DOM
 
-    <form action="post" onsubmit="return validateMSG();">
-        
-    </form>
+          var output = document.getElementById("output");
+  
 
-    <div class = "msg">
-      <h1>Contribute to the propaganda</h1>
-      <a class = "button" href="/profile/tof">START CONTRIBUTING</a>
-    </div>
+          $("button").click(function () {
+              
+            var message = document.getElementById("message");
+            var username = document.getElementById("username");
 
-    <div class="Unsubscribe">
-      <h3>Press the BETRAY button to logout</h1>
-      <a class = "button" href="/auth/logout">BETRAY THE USSR</a>
-    </div>
+              front_end_socket.emit("chatmsg",{
+                message:message.value,
+                username:username.value
+              });
+
+          });
+  
+          //Listener for events on the client
+          front_end_socket.on("chat", function(data){
+              output.innerHTML += "<p><strong>" + data.username + ":</strong>" + data.message + "</p><br>"
+          });
+  
+          });
+      </script>
+
+
   </body>
 </html>
