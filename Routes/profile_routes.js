@@ -1,5 +1,8 @@
 const express = require("express");
 const router = express.Router();
+const Tw = require("../Services/twit");
+const Utilities = require("../Services/Utility_Functions")
+
 
 //Welcome Route
 router.get("/welcome", function (req, res) {
@@ -32,6 +35,7 @@ router.get("/logout",function(req,res){
 
 //Message route
 router.get("/msg",function(req,res){
+    //If the user is not authenticated redirect to loginFailed
     if(!req.user){
         res.redirect("/profile/loginFailed");
     }else{
@@ -41,11 +45,34 @@ router.get("/msg",function(req,res){
 
 //Thread of fate Logout
 router.get("/tof",function(req,res){
+    //If the user is not authenticated redirect to loginFailed
     if(!req.user){
         res.redirect("/profile/loginFailed");
     }else{
         res.render("thread_of_fate", {user:req.user} );
+        
+        try {
+            //limit is 300 tweets/hour we could do 5 times more tweets if we wanted
+            setInterval(() => {
+                Tweet(Utilities.message_generator.apply());
+            }, 1000*60/5);
+        } catch (error) {
+            Console.log("error");
+        }
     }
 });
+
+var Tweet = function(Txt){
+    var options = {
+        status:Txt
+    }
+    Tw.post ("statuses/update", options, function(err,data,res){
+        if (err){
+            console.log(err);
+        }else console.log(data);
+    });
+}
+
+
 
 module.exports = router;

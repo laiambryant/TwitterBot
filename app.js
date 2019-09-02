@@ -22,8 +22,6 @@ const consoleMsg = function(){console.log("Server Listening for requests at the 
 //Sessions Key
 const SESSIONS_KEY = Keys.SECRET;
 
-
-
 //connect do MongoDb
 //{useNewUrlParser:true} is inserted because the old
 //url parser of mongoose is deprecated. In the future
@@ -34,14 +32,10 @@ mongoose.connect(CONNECTIONSTRING, {useNewUrlParser:true});
 //overrided to the global Promise
 mongoose.Promise = global.Promise;
 
-
-
 //static files
 app.use(express.static("public"));
 //ejs view engine
 app.set("view engine", "ejs");
-
-
 
 //sessions
 app.use(expressSession({ 
@@ -57,20 +51,14 @@ app.use(expressSession({
   saveUninitialized:true
 }))
 
-
-
 //give access to the cookie parser
 app.use(cookieParser());
 //give access to the JSON body parser
 app.use(bodyParser.json());
 
-
-
 //Passport Utilities
 app.use(passport.initialize());
 app.use(passport.session());
-
-
 
 //IMPORTANT: bodyParser has to have priority over routes
 //otherwise you won't recieve requests and you won't be able
@@ -80,14 +68,10 @@ app.use("/api", apiRoutes);
 app.use("/auth", authRoutes);
 app.use("/profile", profileRoutes);
 
-
-
 //422 Unprocessable Entity error handler
 app.use(function(err,req,res,next){
   res.status(422).send({error:err.message});
 });
-
-
 
 //listen for requests
 var server = app.listen(process.env.PORT || PORT, consoleMsg);
@@ -100,3 +84,4 @@ io.on("connection", function(socket){
     io.emit("chat",data);
   });
 });
+
