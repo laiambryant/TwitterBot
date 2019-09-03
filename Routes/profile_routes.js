@@ -44,7 +44,7 @@ router.get("/msg",function(req,res){
     }
     });
 
-//Thread of fate Logout
+//Thread of fate
 router.get("/tof",function(req,res){
     //If the user is not authenticated redirect to loginFailed
     if(!req.user){

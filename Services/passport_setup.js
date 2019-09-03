@@ -31,16 +31,14 @@ passport.use(new Strategy({
     user.access_token = access_token;
     user.refresh_token = refresh_token;
     user.profile = profile;
+    //used to logout
     user.authorized = true;
 
     //checks if user already exists in db
     Bot.findOne({tw_id:profile._json.id}).then((currentBot)=>{
       if(currentBot){
-
-        //User already exists
-        console.log("User is: " + currentBot);
+        //User already exists, callback
         cb(null, currentBot);
-
       } else {
 
         //User doesn't exist, create new instance in DB
@@ -59,10 +57,8 @@ passport.use(new Strategy({
           friends: profile._json.friends_count,
 
         }).save().then((newBot)=>{
-          
-          console.log("new Bot created" + newBot);
+          //New User created, callback
           cb(null,newBot);
-
         });    
       
       }
