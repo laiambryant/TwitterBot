@@ -68,11 +68,6 @@ app.use("/api", apiRoutes);
 app.use("/auth", authRoutes);
 app.use("/profile", profileRoutes);
 
-//422 Unprocessable Entity error handler
-app.use(function(err,req,res,next){
-  res.status(422).send({error:err.message});
-});
-
 //listen for requests
 var server = app.listen(process.env.PORT || PORT, consoleMsg);
 
