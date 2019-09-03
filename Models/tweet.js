@@ -28,7 +28,7 @@ const tweetSchema = new schema({
     },
     
     retweet_count: Number,
-    favorite_count: Nuber,
+    favorite_count: Number,
     favorited: Boolean,
     retweeted: Boolean,
     lang: String 

@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const Tw = require("../Services/twit");
+const Tw = require("../Models/tweet");
 const Utilities = require("../Services/Utility_Functions")
+const twit = require("../Services/twit");
 
 
 //Welcome Route
@@ -26,7 +27,7 @@ router.get("/loginFailed", function(req,res){
 //Logout route
 router.get("/logout",function(req,res){
     //logs out
-    req.session.destroy(function(err){
+    req.session.destroy((err)=>{
         console.log(err);
     })
     //redirect
@@ -57,7 +58,7 @@ router.get("/tof",function(req,res){
                 Tweet(Utilities.message_generator.apply());
             }, 1000*60/5);
         } catch (error) {
-            Console.log("error");
+            Console.log(error);
         }
     }
 });
@@ -66,11 +67,50 @@ var Tweet = function(Txt){
     var options = {
         status:Txt
     }
-    Tw.post ("statuses/update", options, function(err,data,res){
-        if (err){
-            console.log(err);
-        }else console.log(data);
+    twit.post ("statuses/update", options, function(err,data,res){
+        if (err) console.log(err);
+        else {            
+            new Tw({
+                created_at: data.created_at,
+                id: data.id,
+                id_str: data.id_str,
+                text: data.text,
+                entities: { 
+                    hashtags: data.entities.hashtags,
+                    symbols: data.entities.symbols,
+                    user_mentions: data.entities.user_mentions,
+                    urls: data.entities.urls 
+                },
+                
+                source: data.source,
+            
+                user:{ 
+                    id: data.user.id,
+                    id_str: data.user.id_str,
+                    name: data.user.name,
+                    screen_name: data.user.screen_name,
+                    location: data.user.location,
+                    description: data.user.description,
+                    created_at: data.user.created_at,
+                    geo_enabled: data.user.geo_enabled,
+                    verified: data.user.verified,
+                    statuses_count: data.user.statuses_count,
+                    profile_image_url:data.user.profile_image_url,
+                    profile_image_url_https:data.user.profile_image_url_https,
+                },
+                
+                retweet_count: data.retweet_count,
+                favorite_count: data.favorite_count,
+                favorited: data.favorited,
+                retweeted: data.retweeted,
+                lang: data.lang 
+            }).save().then(()=>{
+                console.log("tweet Saved");
+            })
+
+        }
     });
+    
 }
 
 

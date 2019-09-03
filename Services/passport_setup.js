@@ -5,7 +5,6 @@ const CB_URL =  "http://127.0.0.1:3000/auth/twitter/callback";
 const Bot = require("../Models/bot");
 const trustProxy = false;
 const Utilities = require("./Utility_Functions");
-const Twitter = require("twitter");
 
 var user = {
   access_token: null,
