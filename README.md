@@ -23,15 +23,42 @@ The API gives the users 7 GET methods (4 for Bots, 3 for Tweets), 1 POST, 1 PUT 
 
 For PUT and POST Requests (Only available for bots) this is the model for the json:
 
-`{`
-    `my_id:String,`
-    `username:String,`
-    `tw_id:Number,`
-    `tw_screen_name:String,`
-    `followers:Number,`
-    `friends:Number,`
-    `active:Boolean`
-`}`
+~~~javascript
+{
+    my_id:{
+        type:String,
+    },
+
+    username:{
+        type:String
+    },
+    
+    tw_id:{
+        type:Number
+    },
+
+    tw_id_str:{
+        type:String
+    },
+
+    tw_name:{
+        type:String
+    },
+
+    tw_screen_name : {
+        type:String
+    },
+
+    followers:{
+        type:Number
+    },
+
+    friends:{
+        type:Number
+    }
+}
+~~~
+
 
 ## Methods
 
