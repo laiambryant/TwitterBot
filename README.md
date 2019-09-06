@@ -420,7 +420,7 @@ The message page implements with jquery and socket.io a websocket chat:
 
 This code first of all starts the websocket and then checks if the document is ready and then queries the DOM for the output element. We then have a username that can be edited but for default it will be the twitter name of the user, and a message box in which users can write messages. There is an event listener for the click and the message data is then sent onto the websocket and recieved by the server. The server then emits the message to all users that have a function that prints the User that sent the message followed  by the message itself.
 
-#Things that can be improved on
+# Things that can be improved on
 
 I'll give a brief list of things about the project that could certainly be improved.
 
