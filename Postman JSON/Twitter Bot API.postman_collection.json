@@ -1,0 +1,1354 @@
+{
+	"info": {
+		"_postman_id": "b581c4f0-2005-4e6d-ae55-f56821b15a87",
+		"name": "Twitter Bot API",
+		"description": "# Introduction\nThe api gives many methods to interact with the Database, retrieve and modify data\n\n# Overview\nThe API gives the users 7 GET methods (4 for Bots, 3 for Tweets), 1 POST, 1 PUT and 1 DELETE method (POST,PUT,DELETE only for Bots):\n\nFor PUT and POST Requests (Only available for bots) this is the model for the json:\n\t\n\t{\n\t\tmy_id:String,\n\t\tusername:String,\n\t\ttw_id:Number,\n\t\ttw_screen_name:String,\n\t\tfollowers:Number,\n\t\tfriends:Number,\n\t\tactive:Boolean\n\t}\n\t\n\tGET \"/bots\" \n\t\tFUNCTIONALITY: Return all bots\n\t\tPOSSIBLE ERROR CODES:\n\t\t\t200:OK\n\t\t\t204:NO CONTENT, when there are no bots available in the DB\n\t\t\t408:REQUEST TIMEOUT, the timeout is 7 seconds\n\t\t\t500:INTERNAL SERVER ERROR\n\n\tGET\t\"/bots/names\"\n\t\tFUNCTIONALITY: Return all bot names\n\t\tPOSSIBLE ERROR CODES:\n\t\t\t200:OK\n\t\t\t204:NO CONTENT, when there are no bots available in the DB\n\t\t\t408:REQUEST TIMEOUT, the timeout is 7 seconds\n\t\t\t500:INTERNAL SERVER ERROR\n\n\tGET \"/bots/ids\"\n\t\tFUNCTIONALITY:Return all bot ids\n\t\tPOSSIBLE ERROR CODES:\t\t\t\n\t\t\t200:OK\n\t\t\t204:NO CONTENT, when there are no bots available in the DB\n\t\t\t408:REQUEST TIMEOUT, the timeout is 7 seconds\n\t\t\t500:INTERNAL SERVER ERROR\n\n\tGET \"/bots/:id\"\t\t\n\t\tFUNCTIONALITY: return bot corresponding to the id\n\t\tPOSSIBLE ERROR CODES:\t\t\t\n\t\t\t200:OK\n\t\t\t404:NOT FOUND, The id does not correspond to any of the bots stored in the database\n\t\t\t408:REQUEST TIMEOUT, the timeout is 7 seconds\n\t\t\t500:INTERNAL SERVER ERROR\n\n\tGET \"/tweets\"\t\t\n\t\tFUNCTIONALITY: Return all tweets\n\t\tPOSSIBLE ERROR CODES:\n\t\t\t200:OK\n\t\t\t204:NO CONTENT, when there are no tweets available in the DB\n\t\t\t408:REQUEST TIMEOUT, the timeout is 7 seconds\n\t\t\t500:INTERNAL SERVER ERROR\n\n\tGET \"/tweets/:id\"\t\t\n\t\tFUNCTIONALITY: Returns tweet corresponding to the id\n\t\tPOSSIBLE ERROR CODES:\n\t\t\t200:OK\n\t\t\t404:NOT FOUND, The id does not correspond to any of the bots stored in the database\n\t\t\t408:REQUEST TIMEOUT, the timeout is 7 seconds\n\t\t\t500:INTERNAL SERVER ERROR\n\n\tGET \"/tweets/:user_id\"\n\t\tFUNCTIONALITY: Returns all tweets from the user corresponding to the id\n\t\tPOSSIBLE ERROR CODES:\n\t\t\t200:OK\n\t\t\t404:NOT FOUND, The id does not correspond to any of the bots stored in the database\n\t\t\t408:REQUEST TIMEOUT, the timeout is 7 seconds\n\t\t\t500:INTERNAL SERVER ERROR\n\t\n\tPOST \"/bots\"\n\t\tFUNCTIONALITY: Creates a new Bot Instance in the DB. The body must contain json.\n\t\tPOSSIBLE ERROR CODES:\n\t\t\t200:OK\n\t\t\t408:REQUEST TIMEOUT, the timeout is 7 seconds\n\t\t\t500:INTERNAL SERVER ERROR\n\n\tPUT \"/bots/:id\"\n\t\tFUNCTIONALITY: Modifies the bot corresponding to the id \n\t\tPOSSIBLE ERROR CODES: Modifies the \n\t\t\t200:OK\n\t\t\t404:NOT FOUND, The id does not correspond to any of the bots stored in the database\n\t\t\t408:REQUEST TIMEOUT, the timeout is 7 seconds\n\t\t\t500:INTERNAL SERVER ERROR\n\n\tDELETE \"/bots/:id\"\n\t\tFUNCTIONALITY:Deletes the bot corresponding to the id\n\t\tPOSSIBLE ERROR CODES:\n\t\t\t200:OK\n\t\t\t404:NOT FOUND, The id does not correspond to any of the bots stored in the database\n\t\t\t408:REQUEST TIMEOUT, the timeout is 7 seconds\n\t\t\t500:INTERNAL SERVER ERROR\n\n\n# Authentication\nAt the time there is no autentication required, but in the future authentication could be certainly added\n\n# Error Codes\n200:Ok\n404:Resource not found\n408:Request Timeout\n500:Internal Server Error\n\n\n# Rate limit\nThe only limit is how many requests the server can handle.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "127.0.0.1:3000/api/bots",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6501c9e6-0453-4c83-827a-e758904f83e7",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "127.0.0.1:3000/api/bots",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"bots"
+					]
+				},
+				"description": "Returns all Bots"
+			},
+			"response": [
+				{
+					"name": "Default",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "127.0.0.1:3000/bots",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"bots"
+							]
+						}
+					},
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "127.0.0.1:3000/api/bots",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "127.0.0.1:3000/api/bots",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"bots"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "2479"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"9af-unac1Ix6nPyVBLYdvtJgba5Zomc\""
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "sid=s%3AemUcb3h4r5V6Ko9uJKDAzWuvVDr3ZR4k.5zDnVujJeBqOXniSZfQsIOdsoRN1JpXkwwEfdNqVOhU; Path=/; Expires=Sat, 14 Sep 2019 18:45:40 GMT; HttpOnly"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 13 Sep 2019 18:45:40 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"_id\": \"5d6a2f981cf17e6d0e92acf6\",\n        \"my_id\": \"0\",\n        \"username\": \"test\",\n        \"tw_id_str\": \"1291029302193\",\n        \"tw_name\": \"test_profile\",\n        \"tw_screen_name\": \"test_profile_name\",\n        \"followers\": 0,\n        \"friends\": 0,\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"5d6a30098441b86d8b894aea\",\n        \"my_id\": \"0\",\n        \"username\": \"test\",\n        \"tw_id\": 1291029302193,\n        \"tw_id_str\": \"1291029302193\",\n        \"tw_name\": \"test_profile\",\n        \"tw_screen_name\": \"test_profile_name\",\n        \"followers\": 0,\n        \"friends\": 0,\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"5d7b74d28eedc53289bf3c2e\",\n        \"tw_id_str\": \"[object Undefined]\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"5d7b79802c73933331e6c3e8\",\n        \"my_id\": \"00000000000000\",\n        \"username\": \"John Titor\",\n        \"tw_id\": 1234567891011,\n        \"tw_screen_name\": \"xX_JOHNTITOR_Xx\",\n        \"followers\": 666,\n        \"friends\": 666,\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"5d7b79dc75395e3555e1efd6\",\n        \"my_id\": \"00000000000000\",\n        \"username\": \"John Titor\",\n        \"tw_id\": 1234567891011,\n        \"tw_screen_name\": \"xX_JOHNTITOR_Xx\",\n        \"followers\": 666,\n        \"friends\": 666,\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"5d7b7bc36dfe8b368a9d065a\",\n        \"my_id\": \"00000000000000\",\n        \"username\": \"John Titor\",\n        \"tw_id\": 1234567891011,\n        \"tw_screen_name\": \"xX_JOHNTITOR_Xx\",\n        \"followers\": 666,\n        \"friends\": 666,\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"5d7b7ce96dfe8b368a9d065b\",\n        \"my_id\": \"00000000000000\",\n        \"username\": \"John Titor\",\n        \"tw_id\": 13221321312,\n        \"tw_screen_name\": \"xX_JOHNTITOR_Xx\",\n        \"followers\": 666,\n        \"friends\": 666,\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"5d7b7d12eebb633761eb2990\",\n        \"my_id\": \"00000000000000\",\n        \"username\": \"John Titor\",\n        \"tw_id\": 13221321312,\n        \"tw_screen_name\": \"xX_JOHNTITOR_Xx\",\n        \"followers\": 666,\n        \"friends\": 666,\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"5d7b7e0ab32fbc38070e5663\",\n        \"my_id\": \"00000000000000\",\n        \"username\": \"John Titor\",\n        \"tw_id\": 13221321312,\n        \"tw_screen_name\": \"xX_JOHNTITOR_Xx\",\n        \"followers\": 666,\n        \"friends\": 666,\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"5d7ba2af028f964c2b5eebe5\",\n        \"my_id\": \"00000000000000\",\n        \"username\": \"John Titor\",\n        \"tw_id\": 13221321312,\n        \"tw_screen_name\": \"xX_JOHNTITOR_Xx\",\n        \"followers\": 666,\n        \"friends\": 666,\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"5d7ba3f7028f964c2b5eebe6\",\n        \"my_id\": \"00000000000000\",\n        \"username\": \"John Titor\",\n        \"tw_id\": 13221321312,\n        \"tw_screen_name\": \"xX_JOHNTITOR_Xx\",\n        \"followers\": 666,\n        \"friends\": 666,\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"5d7ba451028f964c2b5eebe7\",\n        \"my_id\": \"00000000000000\",\n        \"username\": \"John Titor\",\n        \"tw_id\": 13221321312,\n        \"tw_screen_name\": \"xX_JOHNTITOR_Xx\",\n        \"followers\": 666,\n        \"friends\": 666,\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"5d7bb2c15951a30a0856e886\",\n        \"my_id\": \"function(){\\n    var S4 = function() {\\n       return (((1+Math.random())*0x10000)|0).toString(16).substring(1);\\n    };\\n    return (S4()+S4()+\\\"-\\\"+S4()+\\\"-\\\"+S4()+\\\"-\\\"+S4()+\\\"-\\\"+S4()+S4()+S4());\\n}\",\n        \"tw_id\": 1158341013670416400,\n        \"tw_id_str\": \"1158341013670416384\",\n        \"tw_name\": \"Liam Bryant\",\n        \"tw_screen_name\": \"LiamBry23652319\",\n        \"followers\": 0,\n        \"friends\": 0,\n        \"__v\": 0\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "127.0.0.1:3000/api/bots/names",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6f4c5421-6d66-47c1-b249-47fbbea9d65c",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "127.0.0.1:3000/api/bots/names",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"bots",
+						"names"
+					]
+				},
+				"description": "Returns all Bots twitter name"
+			},
+			"response": [
+				{
+					"name": "127.0.0.1:3000/api/bots/names",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "127.0.0.1:3000/api/bots/names",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"bots",
+								"names"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "880"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"370-5DkM6qfq5dK5QoavasjWjWnLhvM\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 13 Sep 2019 18:45:53 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"_id\": \"5d6a2f981cf17e6d0e92acf6\",\n        \"tw_screen_name\": \"test_profile_name\"\n    },\n    {\n        \"_id\": \"5d6a30098441b86d8b894aea\",\n        \"tw_screen_name\": \"test_profile_name\"\n    },\n    {\n        \"_id\": \"5d7b74d28eedc53289bf3c2e\"\n    },\n    {\n        \"_id\": \"5d7b79802c73933331e6c3e8\",\n        \"tw_screen_name\": \"xX_JOHNTITOR_Xx\"\n    },\n    {\n        \"_id\": \"5d7b79dc75395e3555e1efd6\",\n        \"tw_screen_name\": \"xX_JOHNTITOR_Xx\"\n    },\n    {\n        \"_id\": \"5d7b7bc36dfe8b368a9d065a\",\n        \"tw_screen_name\": \"xX_JOHNTITOR_Xx\"\n    },\n    {\n        \"_id\": \"5d7b7ce96dfe8b368a9d065b\",\n        \"tw_screen_name\": \"xX_JOHNTITOR_Xx\"\n    },\n    {\n        \"_id\": \"5d7b7d12eebb633761eb2990\",\n        \"tw_screen_name\": \"xX_JOHNTITOR_Xx\"\n    },\n    {\n        \"_id\": \"5d7b7e0ab32fbc38070e5663\",\n        \"tw_screen_name\": \"xX_JOHNTITOR_Xx\"\n    },\n    {\n        \"_id\": \"5d7ba2af028f964c2b5eebe5\",\n        \"tw_screen_name\": \"xX_JOHNTITOR_Xx\"\n    },\n    {\n        \"_id\": \"5d7ba3f7028f964c2b5eebe6\",\n        \"tw_screen_name\": \"xX_JOHNTITOR_Xx\"\n    },\n    {\n        \"_id\": \"5d7ba451028f964c2b5eebe7\",\n        \"tw_screen_name\": \"xX_JOHNTITOR_Xx\"\n    },\n    {\n        \"_id\": \"5d7bb2c15951a30a0856e886\",\n        \"tw_screen_name\": \"LiamBry23652319\"\n    }\n]"
+				},
+				{
+					"name": "Default",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "127.0.0.1:3000/bots/names",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"bots",
+								"names"
+							]
+						}
+					},
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "127.0.0.1:3000/api/bots/ids",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7d52c989-77a9-49c9-93d0-b497ab55937c",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "127.0.0.1:3000/api/bots/ids",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"bots",
+						"ids"
+					]
+				},
+				"description": "Returns all Bots twitter ids"
+			},
+			"response": [
+				{
+					"name": "127.0.0.1:3000/api/bots/ids",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "127.0.0.1:3000/api/bots/ids",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"bots",
+								"ids"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "692"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2b4-fZG94/ZbY5ymlu9khSk4RNzbEJU\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 13 Sep 2019 18:46:02 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"_id\": \"5d6a2f981cf17e6d0e92acf6\"\n    },\n    {\n        \"_id\": \"5d6a30098441b86d8b894aea\",\n        \"tw_id\": 1291029302193\n    },\n    {\n        \"_id\": \"5d7b74d28eedc53289bf3c2e\"\n    },\n    {\n        \"_id\": \"5d7b79802c73933331e6c3e8\",\n        \"tw_id\": 1234567891011\n    },\n    {\n        \"_id\": \"5d7b79dc75395e3555e1efd6\",\n        \"tw_id\": 1234567891011\n    },\n    {\n        \"_id\": \"5d7b7bc36dfe8b368a9d065a\",\n        \"tw_id\": 1234567891011\n    },\n    {\n        \"_id\": \"5d7b7ce96dfe8b368a9d065b\",\n        \"tw_id\": 13221321312\n    },\n    {\n        \"_id\": \"5d7b7d12eebb633761eb2990\",\n        \"tw_id\": 13221321312\n    },\n    {\n        \"_id\": \"5d7b7e0ab32fbc38070e5663\",\n        \"tw_id\": 13221321312\n    },\n    {\n        \"_id\": \"5d7ba2af028f964c2b5eebe5\",\n        \"tw_id\": 13221321312\n    },\n    {\n        \"_id\": \"5d7ba3f7028f964c2b5eebe6\",\n        \"tw_id\": 13221321312\n    },\n    {\n        \"_id\": \"5d7ba451028f964c2b5eebe7\",\n        \"tw_id\": 13221321312\n    },\n    {\n        \"_id\": \"5d7bb2c15951a30a0856e886\",\n        \"tw_id\": 1158341013670416400\n    }\n]"
+				},
+				{
+					"name": "Default",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "127.0.0.1:3000/bots/ids",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"bots",
+								"ids"
+							]
+						}
+					},
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "127.0.0.1:3000/api/bots/search/:id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0d49c179-1b63-4556-8ae1-9e72822bd3a7",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "127.0.0.1:3000/api/bots/search/1291029302193",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"bots",
+						"search",
+						"1291029302193"
+					]
+				},
+				"description": "Returns the data of the bot corresponding to the id"
+			},
+			"response": [
+				{
+					"name": "Default",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "127.0.0.1:3000/bots:id",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"bots:id"
+							]
+						}
+					},
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "127.0.0.1:3000/api/bots/search/:id",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "127.0.0.1:3000/api/bots/search/1291029302193",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"bots",
+								"search",
+								"1291029302193"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "212"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"d4-cyVAyL8f23afvhqEgIfOD2Bc/BA\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 13 Sep 2019 18:46:10 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"_id\": \"5d6a30098441b86d8b894aea\",\n        \"my_id\": \"0\",\n        \"username\": \"test\",\n        \"tw_id\": 1291029302193,\n        \"tw_id_str\": \"1291029302193\",\n        \"tw_name\": \"test_profile\",\n        \"tw_screen_name\": \"test_profile_name\",\n        \"followers\": 0,\n        \"friends\": 0,\n        \"__v\": 0\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "127.0.0.1:3000/api/bots",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "03685c77-1183-4a3f-a7ee-c4d4ae443bde",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t  \"my_id\":\"00000000000000\",\n      \"username\":\"John Titor\",\n      \"tw_id\":13221321312,\n      \"tw_screen_name\" :\"xX_JOHNTITOR_Xx\",\n      \"followers\":666,\n      \"friends\":666,\n      \"active\":false\n      \n}"
+				},
+				"url": {
+					"raw": "127.0.0.1:3000/api/bots",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"bots"
+					]
+				},
+				"description": "Creates new instance of bot in the DB"
+			},
+			"response": [
+				{
+					"name": "Default",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "127.0.0.1:3000/bots",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"bots"
+							]
+						}
+					},
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "127.0.0.1:3000/api/bots",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t  \"my_id\":\"00000000000000\",\n      \"username\":\"John Titor\",\n      \"tw_id\":13221321312,\n      \"tw_screen_name\" :\"xX_JOHNTITOR_Xx\",\n      \"followers\":666,\n      \"friends\":666,\n      \"active\":false\n      \n}"
+						},
+						"url": {
+							"raw": "127.0.0.1:3000/api/bots",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"bots"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "176"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"b0-tkr2cMMbVKGpafB6Fhf1tDNKACQ\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 13 Sep 2019 18:46:19 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"_id\": \"5d7be3fb933da2131c41445d\",\n    \"my_id\": \"00000000000000\",\n    \"username\": \"John Titor\",\n    \"tw_id\": 13221321312,\n    \"tw_screen_name\": \"xX_JOHNTITOR_Xx\",\n    \"followers\": 666,\n    \"friends\": 666,\n    \"__v\": 0\n}"
+				}
+			]
+		},
+		{
+			"name": "127.0.0.1:3000/api/bots/:id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9a6e6faa-7fff-43ca-a9bb-97acdad7788d",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\t  \n\t\"my_id\":\"99999999999\",\n    \"username\":\"Adam Kadmon\",\n    \"tw_id\":10987654321,\n    \"tw_screen_name\" :\"xX_ADAMKADMON_Xx\",\n    \"followers\":999,\n    \"friends\":999\n\t\n}"
+				},
+				"url": {
+					"raw": "127.0.0.1:3000/api/bots/5d67d301ea6d164be614ebfb",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"bots",
+						"5d67d301ea6d164be614ebfb"
+					]
+				},
+				"description": "Updates the data of the instance corresponding to the id"
+			},
+			"response": [
+				{
+					"name": "Default",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "127.0.0.1:3000/bots/:id",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"bots",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id"
+								}
+							]
+						}
+					},
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "127.0.0.1:3000/api/bots/:id",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\t  \n\t\"my_id\":\"99999999999\",\n    \"username\":\"Adam Kadmon\",\n    \"tw_id\":10987654321,\n    \"tw_screen_name\" :\"xX_ADAMKADMON_Xx\",\n    \"followers\":999,\n    \"friends\":999\n\t\n}"
+						},
+						"url": {
+							"raw": "127.0.0.1:3000/api/bots/5d67d301ea6d164be614ebfb",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"bots",
+								"5d67d301ea6d164be614ebfb"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "28"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1c-+9ddqQz3bjf5PjDs17KiQbnrfAM\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 13 Sep 2019 18:47:08 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"n\": 0,\n    \"nModified\": 0,\n    \"ok\": 1\n}"
+				}
+			]
+		},
+		{
+			"name": "127.0.0.1:3000/api/bots/:id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d888adcd-884b-4c48-bd77-735d95f64144",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "127.0.0.1:3000/api/bots/5d7b73d16c0254308549f02a",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"bots",
+						"5d7b73d16c0254308549f02a"
+					]
+				},
+				"description": "Deletes the data of the user corresponding to the id"
+			},
+			"response": [
+				{
+					"name": "Default",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "127.0.0.1:3000/bots/:id",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"bots",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id"
+								}
+							]
+						}
+					},
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "127.0.0.1:3000/api/bots/:id",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "127.0.0.1:3000/api/bots/5d7b73d16c0254308549f02a",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"bots",
+								"5d7b73d16c0254308549f02a"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "31"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1f-bEHiJuJXoRTga8gAG+oGdyLpUWw\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 13 Sep 2019 18:47:45 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"n\": 0,\n    \"ok\": 1,\n    \"deletedCount\": 0\n}"
+				}
+			]
+		},
+		{
+			"name": "127.0.0.1:3000/api/tweets",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "746d719c-054b-4f7a-b730-33785f41d40f",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "127.0.0.1:3000/api/tweets",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"tweets"
+					]
+				},
+				"description": "Returns id and text of all the tweets stored in the DB"
+			},
+			"response": [
+				{
+					"name": "127.0.0.1:3000/api/tweets",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "127.0.0.1:3000/api/tweets",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"tweets"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "21727"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"54df-0mpHe1Z9XkScA046pGgJhZsWVjc\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 13 Sep 2019 18:47:55 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"entities\": {\n            \"hashtags\": [\n                {\n                    \"text\": \"putinforever\",\n                    \"indices\": [\n                        0,\n                        13\n                    ]\n                }\n            ],\n            \"symbols\": [],\n            \"user_mentions\": [],\n            \"urls\": []\n        },\n        \"user\": {\n            \"id\": 1158341013670416400,\n            \"id_str\": \"1158341013670416384\",\n            \"name\": \"Liam Bryant\",\n            \"screen_name\": \"LiamBry23652319\",\n            \"location\": \"\",\n            \"description\": \"\",\n            \"created_at\": \"Mon Aug 05 11:36:33 +0000 2019\",\n            \"geo_enabled\": false,\n            \"verified\": false,\n            \"statuses_count\": 9,\n            \"profile_image_url\": \"http://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\",\n            \"profile_image_url_https\": \"https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\"\n        },\n        \"_id\": \"5d6e1b37e72d510ff046e422\",\n        \"created_at\": \"Tue Sep 03 07:50:15 +0000 2019\",\n        \"id\": 1168793312804987000,\n        \"id_str\": \"1168793312804986880\",\n        \"text\": \"#putinforever Putin best president\",\n        \"source\": \"<a href=\\\"https://github.com/laiambryant/TwitterBot\\\" rel=\\\"nofollow\\\">Twitter bot/botnet</a>\",\n        \"retweet_count\": 0,\n        \"favorite_count\": 0,\n        \"favorited\": false,\n        \"retweeted\": false,\n        \"lang\": \"en\",\n        \"__v\": 0\n    },\n    {\n        \"entities\": {\n            \"hashtags\": [],\n            \"symbols\": [],\n            \"user_mentions\": [],\n            \"urls\": []\n        },\n        \"user\": {\n            \"id\": 1158341013670416400,\n            \"id_str\": \"1158341013670416384\",\n            \"name\": \"Liam Bryant\",\n            \"screen_name\": \"LiamBry23652319\",\n            \"location\": \"\",\n            \"description\": \"\",\n            \"created_at\": \"Mon Aug 05 11:36:33 +0000 2019\",\n            \"geo_enabled\": false,\n            \"verified\": false,\n            \"statuses_count\": 2,\n            \"profile_image_url\": \"http://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\",\n            \"profile_image_url_https\": \"https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\"\n        },\n        \"_id\": \"5d6e1b4fe72d510ff046e423\",\n        \"created_at\": \"Tue Sep 03 07:50:39 +0000 2019\",\n        \"id\": 1168793413447295000,\n        \"id_str\": \"1168793413447294976\",\n        \"text\": \"Im totally not a russian bot\",\n        \"source\": \"<a href=\\\"https://github.com/laiambryant/TwitterBot\\\" rel=\\\"nofollow\\\">Twitter bot/botnet</a>\",\n        \"retweet_count\": 0,\n        \"favorite_count\": 0,\n        \"favorited\": false,\n        \"retweeted\": false,\n        \"lang\": \"en\",\n        \"__v\": 0\n    },\n    {\n        \"entities\": {\n            \"hashtags\": [],\n            \"symbols\": [],\n            \"user_mentions\": [],\n            \"urls\": []\n        },\n        \"user\": {\n            \"id\": 1158341013670416400,\n            \"id_str\": \"1158341013670416384\",\n            \"name\": \"Liam Bryant\",\n            \"screen_name\": \"LiamBry23652319\",\n            \"location\": \"\",\n            \"description\": \"\",\n            \"created_at\": \"Mon Aug 05 11:36:33 +0000 2019\",\n            \"geo_enabled\": false,\n            \"verified\": false,\n            \"statuses_count\": 1,\n            \"profile_image_url\": \"http://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\",\n            \"profile_image_url_https\": \"https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\"\n        },\n        \"_id\": \"5d722a319d995c1650b0dd23\",\n        \"created_at\": \"Fri Sep 06 09:43:15 +0000 2019\",\n        \"id\": 1169908912637849600,\n        \"id_str\": \"1169908912637849600\",\n        \"text\": \"Hillary Clinton is unfit to be president\",\n        \"source\": \"<a href=\\\"https://github.com/laiambryant/TwitterBot\\\" rel=\\\"nofollow\\\">Twitter bot/botnet</a>\",\n        \"retweet_count\": 0,\n        \"favorite_count\": 0,\n        \"favorited\": false,\n        \"retweeted\": false,\n        \"lang\": \"en\",\n        \"__v\": 0\n    },\n    {\n        \"entities\": {\n            \"hashtags\": [],\n            \"symbols\": [],\n            \"user_mentions\": [],\n            \"urls\": []\n        },\n        \"user\": {\n            \"id\": 1158341013670416400,\n            \"id_str\": \"1158341013670416384\",\n            \"name\": \"Liam Bryant\",\n            \"screen_name\": \"LiamBry23652319\",\n            \"location\": \"\",\n            \"description\": \"\",\n            \"created_at\": \"Mon Aug 05 11:36:33 +0000 2019\",\n            \"geo_enabled\": false,\n            \"verified\": false,\n            \"statuses_count\": 2,\n            \"profile_image_url\": \"http://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\",\n            \"profile_image_url_https\": \"https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\"\n        },\n        \"_id\": \"5d722a3d9d995c1650b0dd24\",\n        \"created_at\": \"Fri Sep 06 09:43:27 +0000 2019\",\n        \"id\": 1169908963027980300,\n        \"id_str\": \"1169908963027980288\",\n        \"text\": \"MAGA\",\n        \"source\": \"<a href=\\\"https://github.com/laiambryant/TwitterBot\\\" rel=\\\"nofollow\\\">Twitter bot/botnet</a>\",\n        \"retweet_count\": 0,\n        \"favorite_count\": 0,\n        \"favorited\": false,\n        \"retweeted\": false,\n        \"lang\": \"et\",\n        \"__v\": 0\n    },\n    {\n        \"entities\": {\n            \"hashtags\": [\n                {\n                    \"text\": \"putinforever\",\n                    \"indices\": [\n                        0,\n                        13\n                    ]\n                }\n            ],\n            \"symbols\": [],\n            \"user_mentions\": [],\n            \"urls\": []\n        },\n        \"user\": {\n            \"id\": 1158341013670416400,\n            \"id_str\": \"1158341013670416384\",\n            \"name\": \"Liam Bryant\",\n            \"screen_name\": \"LiamBry23652319\",\n            \"location\": \"\",\n            \"description\": \"\",\n            \"created_at\": \"Mon Aug 05 11:36:33 +0000 2019\",\n            \"geo_enabled\": false,\n            \"verified\": false,\n            \"statuses_count\": 1,\n            \"profile_image_url\": \"http://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\",\n            \"profile_image_url_https\": \"https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\"\n        },\n        \"_id\": \"5d722a6d9d995c1650b0dd25\",\n        \"created_at\": \"Fri Sep 06 09:44:15 +0000 2019\",\n        \"id\": 1169909164342014000,\n        \"id_str\": \"1169909164342013952\",\n        \"text\": \"#putinforever Putin best president\",\n        \"source\": \"<a href=\\\"https://github.com/laiambryant/TwitterBot\\\" rel=\\\"nofollow\\\">Twitter bot/botnet</a>\",\n        \"retweet_count\": 0,\n        \"favorite_count\": 0,\n        \"favorited\": false,\n        \"retweeted\": false,\n        \"lang\": \"en\",\n        \"__v\": 0\n    },\n    {\n        \"entities\": {\n            \"hashtags\": [],\n            \"symbols\": [],\n            \"user_mentions\": [],\n            \"urls\": []\n        },\n        \"user\": {\n            \"id\": 1158341013670416400,\n            \"id_str\": \"1158341013670416384\",\n            \"name\": \"Liam Bryant\",\n            \"screen_name\": \"LiamBry23652319\",\n            \"location\": \"\",\n            \"description\": \"\",\n            \"created_at\": \"Mon Aug 05 11:36:33 +0000 2019\",\n            \"geo_enabled\": false,\n            \"verified\": false,\n            \"statuses_count\": 2,\n            \"profile_image_url\": \"http://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\",\n            \"profile_image_url_https\": \"https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\"\n        },\n        \"_id\": \"5d722a799d995c1650b0dd26\",\n        \"created_at\": \"Fri Sep 06 09:44:27 +0000 2019\",\n        \"id\": 1169909214669504500,\n        \"id_str\": \"1169909214669504512\",\n        \"text\": \"Im totally not a russian bot\",\n        \"source\": \"<a href=\\\"https://github.com/laiambryant/TwitterBot\\\" rel=\\\"nofollow\\\">Twitter bot/botnet</a>\",\n        \"retweet_count\": 0,\n        \"favorite_count\": 0,\n        \"favorited\": false,\n        \"retweeted\": false,\n        \"lang\": \"en\",\n        \"__v\": 0\n    },\n    {\n        \"entities\": {\n            \"hashtags\": [],\n            \"symbols\": [],\n            \"user_mentions\": [],\n            \"urls\": []\n        },\n        \"user\": {\n            \"id\": 1158341013670416400,\n            \"id_str\": \"1158341013670416384\",\n            \"name\": \"Liam Bryant\",\n            \"screen_name\": \"LiamBry23652319\",\n            \"location\": \"\",\n            \"description\": \"\",\n            \"created_at\": \"Mon Aug 05 11:36:33 +0000 2019\",\n            \"geo_enabled\": false,\n            \"verified\": false,\n            \"statuses_count\": 3,\n            \"profile_image_url\": \"http://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\",\n            \"profile_image_url_https\": \"https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\"\n        },\n        \"_id\": \"5d7bb4ed5951a30a0856e887\",\n        \"created_at\": \"Fri Sep 13 15:25:32 +0000 2019\",\n        \"id\": 1172531768618078200,\n        \"id_str\": \"1172531768618078211\",\n        \"text\": \"Democrats are losers\",\n        \"source\": \"<a href=\\\"https://github.com/laiambryant/TwitterBot\\\" rel=\\\"nofollow\\\">Twitter bot/botnet</a>\",\n        \"retweet_count\": 0,\n        \"favorite_count\": 0,\n        \"favorited\": false,\n        \"retweeted\": false,\n        \"lang\": \"en\",\n        \"__v\": 0\n    },\n    {\n        \"entities\": {\n            \"hashtags\": [],\n            \"symbols\": [],\n            \"user_mentions\": [],\n            \"urls\": []\n        },\n        \"user\": {\n            \"id\": 1158341013670416400,\n            \"id_str\": \"1158341013670416384\",\n            \"name\": \"Liam Bryant\",\n            \"screen_name\": \"LiamBry23652319\",\n            \"location\": \"\",\n            \"description\": \"\",\n            \"created_at\": \"Mon Aug 05 11:36:33 +0000 2019\",\n            \"geo_enabled\": false,\n            \"verified\": false,\n            \"statuses_count\": 4,\n            \"profile_image_url\": \"http://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\",\n            \"profile_image_url_https\": \"https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\"\n        },\n        \"_id\": \"5d7bb4f85951a30a0856e888\",\n        \"created_at\": \"Fri Sep 13 15:25:44 +0000 2019\",\n        \"id\": 1172531818744168400,\n        \"id_str\": \"1172531818744168448\",\n        \"text\": \"Believe in the russian dream\",\n        \"source\": \"<a href=\\\"https://github.com/laiambryant/TwitterBot\\\" rel=\\\"nofollow\\\">Twitter bot/botnet</a>\",\n        \"retweet_count\": 0,\n        \"favorite_count\": 0,\n        \"favorited\": false,\n        \"retweeted\": false,\n        \"lang\": \"en\",\n        \"__v\": 0\n    },\n    {\n        \"entities\": {\n            \"hashtags\": [\n                {\n                    \"text\": \"putinforever\",\n                    \"indices\": [\n                        0,\n                        13\n                    ]\n                }\n            ],\n            \"symbols\": [],\n            \"user_mentions\": [],\n            \"urls\": []\n        },\n        \"user\": {\n            \"id\": 1158341013670416400,\n            \"id_str\": \"1158341013670416384\",\n            \"name\": \"Liam Bryant\",\n            \"screen_name\": \"LiamBry23652319\",\n            \"location\": \"\",\n            \"description\": \"\",\n            \"created_at\": \"Mon Aug 05 11:36:33 +0000 2019\",\n            \"geo_enabled\": false,\n            \"verified\": false,\n            \"statuses_count\": 5,\n            \"profile_image_url\": \"http://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\",\n            \"profile_image_url_https\": \"https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\"\n        },\n        \"_id\": \"5d7bb826fdd3e309eb23be80\",\n        \"created_at\": \"Fri Sep 13 15:39:18 +0000 2019\",\n        \"id\": 1172535230974046200,\n        \"id_str\": \"1172535230974046208\",\n        \"text\": \"#putinforever Putin best president\",\n        \"source\": \"<a href=\\\"https://github.com/laiambryant/TwitterBot\\\" rel=\\\"nofollow\\\">Twitter bot/botnet</a>\",\n        \"retweet_count\": 0,\n        \"favorite_count\": 0,\n        \"favorited\": false,\n        \"retweeted\": false,\n        \"lang\": \"en\",\n        \"__v\": 0\n    },\n    {\n        \"entities\": {\n            \"hashtags\": [],\n            \"symbols\": [],\n            \"user_mentions\": [],\n            \"urls\": []\n        },\n        \"user\": {\n            \"id\": 1158341013670416400,\n            \"id_str\": \"1158341013670416384\",\n            \"name\": \"Liam Bryant\",\n            \"screen_name\": \"LiamBry23652319\",\n            \"location\": \"\",\n            \"description\": \"\",\n            \"created_at\": \"Mon Aug 05 11:36:33 +0000 2019\",\n            \"geo_enabled\": false,\n            \"verified\": false,\n            \"statuses_count\": 6,\n            \"profile_image_url\": \"http://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\",\n            \"profile_image_url_https\": \"https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\"\n        },\n        \"_id\": \"5d7bb9c6b6816c13838eb0c5\",\n        \"created_at\": \"Fri Sep 13 15:46:14 +0000 2019\",\n        \"id\": 1172536978010775600,\n        \"id_str\": \"1172536978010775552\",\n        \"text\": \"We love Trump\",\n        \"source\": \"<a href=\\\"https://github.com/laiambryant/TwitterBot\\\" rel=\\\"nofollow\\\">Twitter bot/botnet</a>\",\n        \"retweet_count\": 0,\n        \"favorite_count\": 0,\n        \"favorited\": false,\n        \"retweeted\": false,\n        \"lang\": \"en\",\n        \"__v\": 0\n    },\n    {\n        \"entities\": {\n            \"hashtags\": [],\n            \"symbols\": [],\n            \"user_mentions\": [],\n            \"urls\": []\n        },\n        \"user\": {\n            \"id\": 1158341013670416400,\n            \"id_str\": \"1158341013670416384\",\n            \"name\": \"Liam Bryant\",\n            \"screen_name\": \"LiamBry23652319\",\n            \"location\": \"\",\n            \"description\": \"\",\n            \"created_at\": \"Mon Aug 05 11:36:33 +0000 2019\",\n            \"geo_enabled\": false,\n            \"verified\": false,\n            \"statuses_count\": 7,\n            \"profile_image_url\": \"http://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\",\n            \"profile_image_url_https\": \"https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\"\n        },\n        \"_id\": \"5d7bb9deb6816c13838eb0c6\",\n        \"created_at\": \"Fri Sep 13 15:46:38 +0000 2019\",\n        \"id\": 1172537075855495200,\n        \"id_str\": \"1172537075855495170\",\n        \"text\": \"We love Putin\",\n        \"source\": \"<a href=\\\"https://github.com/laiambryant/TwitterBot\\\" rel=\\\"nofollow\\\">Twitter bot/botnet</a>\",\n        \"retweet_count\": 0,\n        \"favorite_count\": 0,\n        \"favorited\": false,\n        \"retweeted\": false,\n        \"lang\": \"en\",\n        \"__v\": 0\n    },\n    {\n        \"entities\": {\n            \"hashtags\": [\n                {\n                    \"text\": \"MAGA\",\n                    \"indices\": [\n                        0,\n                        5\n                    ]\n                }\n            ],\n            \"symbols\": [],\n            \"user_mentions\": [],\n            \"urls\": []\n        },\n        \"user\": {\n            \"id\": 1158341013670416400,\n            \"id_str\": \"1158341013670416384\",\n            \"name\": \"Liam Bryant\",\n            \"screen_name\": \"LiamBry23652319\",\n            \"location\": \"\",\n            \"description\": \"\",\n            \"created_at\": \"Mon Aug 05 11:36:33 +0000 2019\",\n            \"geo_enabled\": false,\n            \"verified\": false,\n            \"statuses_count\": 8,\n            \"profile_image_url\": \"http://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\",\n            \"profile_image_url_https\": \"https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\"\n        },\n        \"_id\": \"5d7bb9eab6816c13838eb0c7\",\n        \"created_at\": \"Fri Sep 13 15:46:50 +0000 2019\",\n        \"id\": 1172537126451331000,\n        \"id_str\": \"1172537126451331075\",\n        \"text\": \"#MAGA They say we are bots\",\n        \"source\": \"<a href=\\\"https://github.com/laiambryant/TwitterBot\\\" rel=\\\"nofollow\\\">Twitter bot/botnet</a>\",\n        \"retweet_count\": 0,\n        \"favorite_count\": 0,\n        \"favorited\": false,\n        \"retweeted\": false,\n        \"lang\": \"en\",\n        \"__v\": 0\n    },\n    {\n        \"entities\": {\n            \"hashtags\": [\n                {\n                    \"text\": \"trump2020\",\n                    \"indices\": [\n                        0,\n                        10\n                    ]\n                }\n            ],\n            \"symbols\": [],\n            \"user_mentions\": [],\n            \"urls\": []\n        },\n        \"user\": {\n            \"id\": 1158341013670416400,\n            \"id_str\": \"1158341013670416384\",\n            \"name\": \"Liam Bryant\",\n            \"screen_name\": \"LiamBry23652319\",\n            \"location\": \"\",\n            \"description\": \"\",\n            \"created_at\": \"Mon Aug 05 11:36:33 +0000 2019\",\n            \"geo_enabled\": false,\n            \"verified\": false,\n            \"statuses_count\": 9,\n            \"profile_image_url\": \"http://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\",\n            \"profile_image_url_https\": \"https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\"\n        },\n        \"_id\": \"5d7bb9ffb6816c13838eb0c8\",\n        \"created_at\": \"Fri Sep 13 15:47:11 +0000 2019\",\n        \"id\": 1172537216972800000,\n        \"id_str\": \"1172537216972800000\",\n        \"text\": \"#trump2020 MAGA\",\n        \"source\": \"<a href=\\\"https://github.com/laiambryant/TwitterBot\\\" rel=\\\"nofollow\\\">Twitter bot/botnet</a>\",\n        \"retweet_count\": 0,\n        \"favorite_count\": 0,\n        \"favorited\": false,\n        \"retweeted\": false,\n        \"lang\": \"et\",\n        \"__v\": 0\n    },\n    {\n        \"entities\": {\n            \"hashtags\": [],\n            \"symbols\": [],\n            \"user_mentions\": [],\n            \"urls\": []\n        },\n        \"user\": {\n            \"id\": 1158341013670416400,\n            \"id_str\": \"1158341013670416384\",\n            \"name\": \"Liam Bryant\",\n            \"screen_name\": \"LiamBry23652319\",\n            \"location\": \"\",\n            \"description\": \"\",\n            \"created_at\": \"Mon Aug 05 11:36:33 +0000 2019\",\n            \"geo_enabled\": false,\n            \"verified\": false,\n            \"statuses_count\": 10,\n            \"profile_image_url\": \"http://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\",\n            \"profile_image_url_https\": \"https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\"\n        },\n        \"_id\": \"5d7bba0eb6816c13838eb0c9\",\n        \"created_at\": \"Fri Sep 13 15:47:26 +0000 2019\",\n        \"id\": 1172537277089747000,\n        \"id_str\": \"1172537277089746944\",\n        \"text\": \"MAKE AMERICA GREAT AGAIN\",\n        \"source\": \"<a href=\\\"https://github.com/laiambryant/TwitterBot\\\" rel=\\\"nofollow\\\">Twitter bot/botnet</a>\",\n        \"retweet_count\": 0,\n        \"favorite_count\": 0,\n        \"favorited\": false,\n        \"retweeted\": false,\n        \"lang\": \"en\",\n        \"__v\": 0\n    },\n    {\n        \"entities\": {\n            \"hashtags\": [],\n            \"symbols\": [],\n            \"user_mentions\": [],\n            \"urls\": []\n        },\n        \"user\": {\n            \"id\": 1158341013670416400,\n            \"id_str\": \"1158341013670416384\",\n            \"name\": \"Liam Bryant\",\n            \"screen_name\": \"LiamBry23652319\",\n            \"location\": \"\",\n            \"description\": \"\",\n            \"created_at\": \"Mon Aug 05 11:36:33 +0000 2019\",\n            \"geo_enabled\": false,\n            \"verified\": false,\n            \"statuses_count\": 11,\n            \"profile_image_url\": \"http://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\",\n            \"profile_image_url_https\": \"https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\"\n        },\n        \"_id\": \"5d7bba17b6816c13838eb0ca\",\n        \"created_at\": \"Fri Sep 13 15:47:35 +0000 2019\",\n        \"id\": 1172537314528178200,\n        \"id_str\": \"1172537314528178176\",\n        \"text\": \"Lets make russia great again\",\n        \"source\": \"<a href=\\\"https://github.com/laiambryant/TwitterBot\\\" rel=\\\"nofollow\\\">Twitter bot/botnet</a>\",\n        \"retweet_count\": 0,\n        \"favorite_count\": 0,\n        \"favorited\": false,\n        \"retweeted\": false,\n        \"lang\": \"en\",\n        \"__v\": 0\n    },\n    {\n        \"entities\": {\n            \"hashtags\": [],\n            \"symbols\": [],\n            \"user_mentions\": [],\n            \"urls\": []\n        },\n        \"user\": {\n            \"id\": 1158341013670416400,\n            \"id_str\": \"1158341013670416384\",\n            \"name\": \"Liam Bryant\",\n            \"screen_name\": \"LiamBry23652319\",\n            \"location\": \"\",\n            \"description\": \"\",\n            \"created_at\": \"Mon Aug 05 11:36:33 +0000 2019\",\n            \"geo_enabled\": false,\n            \"verified\": false,\n            \"statuses_count\": 12,\n            \"profile_image_url\": \"http://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\",\n            \"profile_image_url_https\": \"https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\"\n        },\n        \"_id\": \"5d7bba23b6816c13838eb0cb\",\n        \"created_at\": \"Fri Sep 13 15:47:47 +0000 2019\",\n        \"id\": 1172537364431982600,\n        \"id_str\": \"1172537364431982593\",\n        \"text\": \"MAGA\",\n        \"source\": \"<a href=\\\"https://github.com/laiambryant/TwitterBot\\\" rel=\\\"nofollow\\\">Twitter bot/botnet</a>\",\n        \"retweet_count\": 0,\n        \"favorite_count\": 0,\n        \"favorited\": false,\n        \"retweeted\": false,\n        \"lang\": \"et\",\n        \"__v\": 0\n    },\n    {\n        \"entities\": {\n            \"hashtags\": [],\n            \"symbols\": [],\n            \"user_mentions\": [],\n            \"urls\": []\n        },\n        \"user\": {\n            \"id\": 1158341013670416400,\n            \"id_str\": \"1158341013670416384\",\n            \"name\": \"Liam Bryant\",\n            \"screen_name\": \"LiamBry23652319\",\n            \"location\": \"\",\n            \"description\": \"\",\n            \"created_at\": \"Mon Aug 05 11:36:33 +0000 2019\",\n            \"geo_enabled\": false,\n            \"verified\": false,\n            \"statuses_count\": 13,\n            \"profile_image_url\": \"http://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\",\n            \"profile_image_url_https\": \"https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\"\n        },\n        \"_id\": \"5d7bba23b6816c13838eb0cc\",\n        \"created_at\": \"Fri Sep 13 15:47:47 +0000 2019\",\n        \"id\": 1172537367816736800,\n        \"id_str\": \"1172537367816736768\",\n        \"text\": \"Trump has approval rates of 101%\",\n        \"source\": \"<a href=\\\"https://github.com/laiambryant/TwitterBot\\\" rel=\\\"nofollow\\\">Twitter bot/botnet</a>\",\n        \"retweet_count\": 0,\n        \"favorite_count\": 0,\n        \"favorited\": false,\n        \"retweeted\": false,\n        \"lang\": \"en\",\n        \"__v\": 0\n    },\n    {\n        \"entities\": {\n            \"hashtags\": [],\n            \"symbols\": [],\n            \"user_mentions\": [],\n            \"urls\": []\n        },\n        \"user\": {\n            \"id\": 1158341013670416400,\n            \"id_str\": \"1158341013670416384\",\n            \"name\": \"Liam Bryant\",\n            \"screen_name\": \"LiamBry23652319\",\n            \"location\": \"\",\n            \"description\": \"\",\n            \"created_at\": \"Mon Aug 05 11:36:33 +0000 2019\",\n            \"geo_enabled\": false,\n            \"verified\": false,\n            \"statuses_count\": 14,\n            \"profile_image_url\": \"http://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\",\n            \"profile_image_url_https\": \"https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\"\n        },\n        \"_id\": \"5d7bba4ab6816c13838eb0cd\",\n        \"created_at\": \"Fri Sep 13 15:48:26 +0000 2019\",\n        \"id\": 1172537528571846700,\n        \"id_str\": \"1172537528571846658\",\n        \"text\": \"Putin can ride bears, can your president ride bears?\",\n        \"source\": \"<a href=\\\"https://github.com/laiambryant/TwitterBot\\\" rel=\\\"nofollow\\\">Twitter bot/botnet</a>\",\n        \"retweet_count\": 0,\n        \"favorite_count\": 0,\n        \"favorited\": false,\n        \"retweeted\": false,\n        \"lang\": \"en\",\n        \"__v\": 0\n    },\n    {\n        \"entities\": {\n            \"hashtags\": [],\n            \"symbols\": [],\n            \"user_mentions\": [],\n            \"urls\": []\n        },\n        \"user\": {\n            \"id\": 1158341013670416400,\n            \"id_str\": \"1158341013670416384\",\n            \"name\": \"Liam Bryant\",\n            \"screen_name\": \"LiamBry23652319\",\n            \"location\": \"\",\n            \"description\": \"\",\n            \"created_at\": \"Mon Aug 05 11:36:33 +0000 2019\",\n            \"geo_enabled\": false,\n            \"verified\": false,\n            \"statuses_count\": 15,\n            \"profile_image_url\": \"http://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\",\n            \"profile_image_url_https\": \"https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\"\n        },\n        \"_id\": \"5d7bba56b6816c13838eb0ce\",\n        \"created_at\": \"Fri Sep 13 15:48:37 +0000 2019\",\n        \"id\": 1172537578018545700,\n        \"id_str\": \"1172537578018545666\",\n        \"text\": \"Hillary Clinton is unfit to be president\",\n        \"source\": \"<a href=\\\"https://github.com/laiambryant/TwitterBot\\\" rel=\\\"nofollow\\\">Twitter bot/botnet</a>\",\n        \"retweet_count\": 0,\n        \"favorite_count\": 0,\n        \"favorited\": false,\n        \"retweeted\": false,\n        \"lang\": \"en\",\n        \"__v\": 0\n    },\n    {\n        \"entities\": {\n            \"hashtags\": [],\n            \"symbols\": [],\n            \"user_mentions\": [],\n            \"urls\": []\n        },\n        \"user\": {\n            \"id\": 1158341013670416400,\n            \"id_str\": \"1158341013670416384\",\n            \"name\": \"Liam Bryant\",\n            \"screen_name\": \"LiamBry23652319\",\n            \"location\": \"\",\n            \"description\": \"\",\n            \"created_at\": \"Mon Aug 05 11:36:33 +0000 2019\",\n            \"geo_enabled\": false,\n            \"verified\": false,\n            \"statuses_count\": 16,\n            \"profile_image_url\": \"http://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\",\n            \"profile_image_url_https\": \"https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\"\n        },\n        \"_id\": \"5d7bba8fb6816c13838eb0cf\",\n        \"created_at\": \"Fri Sep 13 15:49:35 +0000 2019\",\n        \"id\": 1172537820969226200,\n        \"id_str\": \"1172537820969226240\",\n        \"text\": \"Believe in the russian dream\",\n        \"source\": \"<a href=\\\"https://github.com/laiambryant/TwitterBot\\\" rel=\\\"nofollow\\\">Twitter bot/botnet</a>\",\n        \"retweet_count\": 0,\n        \"favorite_count\": 0,\n        \"favorited\": false,\n        \"retweeted\": false,\n        \"lang\": \"en\",\n        \"__v\": 0\n    },\n    {\n        \"entities\": {\n            \"hashtags\": [],\n            \"symbols\": [],\n            \"user_mentions\": [],\n            \"urls\": []\n        },\n        \"user\": {\n            \"id\": 1158341013670416400,\n            \"id_str\": \"1158341013670416384\",\n            \"name\": \"Liam Bryant\",\n            \"screen_name\": \"LiamBry23652319\",\n            \"location\": \"\",\n            \"description\": \"\",\n            \"created_at\": \"Mon Aug 05 11:36:33 +0000 2019\",\n            \"geo_enabled\": false,\n            \"verified\": false,\n            \"statuses_count\": 16,\n            \"profile_image_url\": \"http://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\",\n            \"profile_image_url_https\": \"https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\"\n        },\n        \"_id\": \"5d7bba98b6816c13838eb0d0\",\n        \"created_at\": \"Fri Sep 13 15:49:44 +0000 2019\",\n        \"id\": 1172537856641904600,\n        \"id_str\": \"1172537856641904640\",\n        \"text\": \"Im totally not a russian bot\",\n        \"source\": \"<a href=\\\"https://github.com/laiambryant/TwitterBot\\\" rel=\\\"nofollow\\\">Twitter bot/botnet</a>\",\n        \"retweet_count\": 0,\n        \"favorite_count\": 0,\n        \"favorited\": false,\n        \"retweeted\": false,\n        \"lang\": \"en\",\n        \"__v\": 0\n    },\n    {\n        \"entities\": {\n            \"hashtags\": [],\n            \"symbols\": [],\n            \"user_mentions\": [],\n            \"urls\": []\n        },\n        \"user\": {\n            \"id\": 1158341013670416400,\n            \"id_str\": \"1158341013670416384\",\n            \"name\": \"Liam Bryant\",\n            \"screen_name\": \"LiamBry23652319\",\n            \"location\": \"\",\n            \"description\": \"\",\n            \"created_at\": \"Mon Aug 05 11:36:33 +0000 2019\",\n            \"geo_enabled\": false,\n            \"verified\": false,\n            \"statuses_count\": 18,\n            \"profile_image_url\": \"http://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\",\n            \"profile_image_url_https\": \"https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\"\n        },\n        \"_id\": \"5d7bbaf6b6816c13838eb0d1\",\n        \"created_at\": \"Fri Sep 13 15:51:17 +0000 2019\",\n        \"id\": 1172538249073459200,\n        \"id_str\": \"1172538249073459200\",\n        \"text\": \"We love Trump\",\n        \"source\": \"<a href=\\\"https://github.com/laiambryant/TwitterBot\\\" rel=\\\"nofollow\\\">Twitter bot/botnet</a>\",\n        \"retweet_count\": 0,\n        \"favorite_count\": 0,\n        \"favorited\": false,\n        \"retweeted\": false,\n        \"lang\": \"en\",\n        \"__v\": 0\n    },\n    {\n        \"entities\": {\n            \"hashtags\": [],\n            \"symbols\": [],\n            \"user_mentions\": [],\n            \"urls\": []\n        },\n        \"user\": {\n            \"id\": 1158341013670416400,\n            \"id_str\": \"1158341013670416384\",\n            \"name\": \"Liam Bryant\",\n            \"screen_name\": \"LiamBry23652319\",\n            \"location\": \"\",\n            \"description\": \"\",\n            \"created_at\": \"Mon Aug 05 11:36:33 +0000 2019\",\n            \"geo_enabled\": false,\n            \"verified\": false,\n            \"statuses_count\": 19,\n            \"profile_image_url\": \"http://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\",\n            \"profile_image_url_https\": \"https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\"\n        },\n        \"_id\": \"5d7bbb3db6816c13838eb0d2\",\n        \"created_at\": \"Fri Sep 13 15:52:29 +0000 2019\",\n        \"id\": 1172538547896647700,\n        \"id_str\": \"1172538547896647680\",\n        \"text\": \"Democrats are losers\",\n        \"source\": \"<a href=\\\"https://github.com/laiambryant/TwitterBot\\\" rel=\\\"nofollow\\\">Twitter bot/botnet</a>\",\n        \"retweet_count\": 0,\n        \"favorite_count\": 0,\n        \"favorited\": false,\n        \"retweeted\": false,\n        \"lang\": \"en\",\n        \"__v\": 0\n    },\n    {\n        \"entities\": {\n            \"hashtags\": [],\n            \"symbols\": [],\n            \"user_mentions\": [],\n            \"urls\": []\n        },\n        \"user\": {\n            \"id\": 1158341013670416400,\n            \"id_str\": \"1158341013670416384\",\n            \"name\": \"Liam Bryant\",\n            \"screen_name\": \"LiamBry23652319\",\n            \"location\": \"\",\n            \"description\": \"\",\n            \"created_at\": \"Mon Aug 05 11:36:33 +0000 2019\",\n            \"geo_enabled\": false,\n            \"verified\": false,\n            \"statuses_count\": 20,\n            \"profile_image_url\": \"http://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\",\n            \"profile_image_url_https\": \"https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\"\n        },\n        \"_id\": \"5d7bbc08b6816c13838eb0d3\",\n        \"created_at\": \"Fri Sep 13 15:55:52 +0000 2019\",\n        \"id\": 1172539400594448400,\n        \"id_str\": \"1172539400594448385\",\n        \"text\": \"We love Putin\",\n        \"source\": \"<a href=\\\"https://github.com/laiambryant/TwitterBot\\\" rel=\\\"nofollow\\\">Twitter bot/botnet</a>\",\n        \"retweet_count\": 0,\n        \"favorite_count\": 0,\n        \"favorited\": false,\n        \"retweeted\": false,\n        \"lang\": \"en\",\n        \"__v\": 0\n    }\n]"
+				},
+				{
+					"name": "Default",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "127.0.0.1:3000/tweets",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"tweets"
+							]
+						}
+					},
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "127.0.0.1:3000/api/tweets/:id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a3868a85-f109-46f4-9ce1-c2ef7b51d0e9",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "127.0.0.1:3000/api/tweets/search/1169909164342013952",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"tweets",
+						"search",
+						"1169909164342013952"
+					]
+				},
+				"description": "Returns the data for the tweet corresponding to the id"
+			},
+			"response": [
+				{
+					"name": "127.0.0.1:3000/api/tweets/:id",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "127.0.0.1:3000/api/tweets/search/1169909164342013952",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"tweets",
+								"search",
+								"1169909164342013952"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "947"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"3b3-EZrK3a5Sbas41MS2pBA1HDwz1m4\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 13 Sep 2019 18:48:02 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"entities\": {\n            \"hashtags\": [\n                {\n                    \"text\": \"putinforever\",\n                    \"indices\": [\n                        0,\n                        13\n                    ]\n                }\n            ],\n            \"symbols\": [],\n            \"user_mentions\": [],\n            \"urls\": []\n        },\n        \"user\": {\n            \"id\": 1158341013670416400,\n            \"id_str\": \"1158341013670416384\",\n            \"name\": \"Liam Bryant\",\n            \"screen_name\": \"LiamBry23652319\",\n            \"location\": \"\",\n            \"description\": \"\",\n            \"created_at\": \"Mon Aug 05 11:36:33 +0000 2019\",\n            \"geo_enabled\": false,\n            \"verified\": false,\n            \"statuses_count\": 1,\n            \"profile_image_url\": \"http://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\",\n            \"profile_image_url_https\": \"https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\"\n        },\n        \"_id\": \"5d722a6d9d995c1650b0dd25\",\n        \"created_at\": \"Fri Sep 06 09:44:15 +0000 2019\",\n        \"id\": 1169909164342014000,\n        \"id_str\": \"1169909164342013952\",\n        \"text\": \"#putinforever Putin best president\",\n        \"source\": \"<a href=\\\"https://github.com/laiambryant/TwitterBot\\\" rel=\\\"nofollow\\\">Twitter bot/botnet</a>\",\n        \"retweet_count\": 0,\n        \"favorite_count\": 0,\n        \"favorited\": false,\n        \"retweeted\": false,\n        \"lang\": \"en\",\n        \"__v\": 0\n    }\n]"
+				},
+				{
+					"name": "Default",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "127.0.0.1:3000/tweets/:id",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"tweets",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id"
+								}
+							]
+						}
+					},
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "127.0.0.1:3000/api/tweets/searchUID/:user_id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6715e8b2-ceac-4562-aef0-393c373e7258",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "127.0.0.1:3000/api/tweets/searchUID/1158341013670416400",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"tweets",
+						"searchUID",
+						"1158341013670416400"
+					]
+				},
+				"description": "Returns the data for all the tweets from the user corresponding to the id"
+			},
+			"response": [
+				{
+					"name": "127.0.0.1:3000/api/tweets/searchUID/:user_id",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "127.0.0.1:3000/api/tweets/searchUID/1158341013670416400",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"tweets",
+								"searchUID",
+								"1158341013670416400"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "21727"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"54df-0mpHe1Z9XkScA046pGgJhZsWVjc\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 13 Sep 2019 18:48:08 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"entities\": {\n            \"hashtags\": [\n                {\n                    \"text\": \"putinforever\",\n                    \"indices\": [\n                        0,\n                        13\n                    ]\n                }\n            ],\n            \"symbols\": [],\n            \"user_mentions\": [],\n            \"urls\": []\n        },\n        \"user\": {\n            \"id\": 1158341013670416400,\n            \"id_str\": \"1158341013670416384\",\n            \"name\": \"Liam Bryant\",\n            \"screen_name\": \"LiamBry23652319\",\n            \"location\": \"\",\n            \"description\": \"\",\n            \"created_at\": \"Mon Aug 05 11:36:33 +0000 2019\",\n            \"geo_enabled\": false,\n            \"verified\": false,\n            \"statuses_count\": 9,\n            \"profile_image_url\": \"http://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\",\n            \"profile_image_url_https\": \"https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\"\n        },\n        \"_id\": \"5d6e1b37e72d510ff046e422\",\n        \"created_at\": \"Tue Sep 03 07:50:15 +0000 2019\",\n        \"id\": 1168793312804987000,\n        \"id_str\": \"1168793312804986880\",\n        \"text\": \"#putinforever Putin best president\",\n        \"source\": \"<a href=\\\"https://github.com/laiambryant/TwitterBot\\\" rel=\\\"nofollow\\\">Twitter bot/botnet</a>\",\n        \"retweet_count\": 0,\n        \"favorite_count\": 0,\n        \"favorited\": false,\n        \"retweeted\": false,\n        \"lang\": \"en\",\n        \"__v\": 0\n    },\n    {\n        \"entities\": {\n            \"hashtags\": [],\n            \"symbols\": [],\n            \"user_mentions\": [],\n            \"urls\": []\n        },\n        \"user\": {\n            \"id\": 1158341013670416400,\n            \"id_str\": \"1158341013670416384\",\n            \"name\": \"Liam Bryant\",\n            \"screen_name\": \"LiamBry23652319\",\n            \"location\": \"\",\n            \"description\": \"\",\n            \"created_at\": \"Mon Aug 05 11:36:33 +0000 2019\",\n            \"geo_enabled\": false,\n            \"verified\": false,\n            \"statuses_count\": 2,\n            \"profile_image_url\": \"http://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\",\n            \"profile_image_url_https\": \"https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\"\n        },\n        \"_id\": \"5d6e1b4fe72d510ff046e423\",\n        \"created_at\": \"Tue Sep 03 07:50:39 +0000 2019\",\n        \"id\": 1168793413447295000,\n        \"id_str\": \"1168793413447294976\",\n        \"text\": \"Im totally not a russian bot\",\n        \"source\": \"<a href=\\\"https://github.com/laiambryant/TwitterBot\\\" rel=\\\"nofollow\\\">Twitter bot/botnet</a>\",\n        \"retweet_count\": 0,\n        \"favorite_count\": 0,\n        \"favorited\": false,\n        \"retweeted\": false,\n        \"lang\": \"en\",\n        \"__v\": 0\n    },\n    {\n        \"entities\": {\n            \"hashtags\": [],\n            \"symbols\": [],\n            \"user_mentions\": [],\n            \"urls\": []\n        },\n        \"user\": {\n            \"id\": 1158341013670416400,\n            \"id_str\": \"1158341013670416384\",\n            \"name\": \"Liam Bryant\",\n            \"screen_name\": \"LiamBry23652319\",\n            \"location\": \"\",\n            \"description\": \"\",\n            \"created_at\": \"Mon Aug 05 11:36:33 +0000 2019\",\n            \"geo_enabled\": false,\n            \"verified\": false,\n            \"statuses_count\": 1,\n            \"profile_image_url\": \"http://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\",\n            \"profile_image_url_https\": \"https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\"\n        },\n        \"_id\": \"5d722a319d995c1650b0dd23\",\n        \"created_at\": \"Fri Sep 06 09:43:15 +0000 2019\",\n        \"id\": 1169908912637849600,\n        \"id_str\": \"1169908912637849600\",\n        \"text\": \"Hillary Clinton is unfit to be president\",\n        \"source\": \"<a href=\\\"https://github.com/laiambryant/TwitterBot\\\" rel=\\\"nofollow\\\">Twitter bot/botnet</a>\",\n        \"retweet_count\": 0,\n        \"favorite_count\": 0,\n        \"favorited\": false,\n        \"retweeted\": false,\n        \"lang\": \"en\",\n        \"__v\": 0\n    },\n    {\n        \"entities\": {\n            \"hashtags\": [],\n            \"symbols\": [],\n            \"user_mentions\": [],\n            \"urls\": []\n        },\n        \"user\": {\n            \"id\": 1158341013670416400,\n            \"id_str\": \"1158341013670416384\",\n            \"name\": \"Liam Bryant\",\n            \"screen_name\": \"LiamBry23652319\",\n            \"location\": \"\",\n            \"description\": \"\",\n            \"created_at\": \"Mon Aug 05 11:36:33 +0000 2019\",\n            \"geo_enabled\": false,\n            \"verified\": false,\n            \"statuses_count\": 2,\n            \"profile_image_url\": \"http://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\",\n            \"profile_image_url_https\": \"https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\"\n        },\n        \"_id\": \"5d722a3d9d995c1650b0dd24\",\n        \"created_at\": \"Fri Sep 06 09:43:27 +0000 2019\",\n        \"id\": 1169908963027980300,\n        \"id_str\": \"1169908963027980288\",\n        \"text\": \"MAGA\",\n        \"source\": \"<a href=\\\"https://github.com/laiambryant/TwitterBot\\\" rel=\\\"nofollow\\\">Twitter bot/botnet</a>\",\n        \"retweet_count\": 0,\n        \"favorite_count\": 0,\n        \"favorited\": false,\n        \"retweeted\": false,\n        \"lang\": \"et\",\n        \"__v\": 0\n    },\n    {\n        \"entities\": {\n            \"hashtags\": [\n                {\n                    \"text\": \"putinforever\",\n                    \"indices\": [\n                        0,\n                        13\n                    ]\n                }\n            ],\n            \"symbols\": [],\n            \"user_mentions\": [],\n            \"urls\": []\n        },\n        \"user\": {\n            \"id\": 1158341013670416400,\n            \"id_str\": \"1158341013670416384\",\n            \"name\": \"Liam Bryant\",\n            \"screen_name\": \"LiamBry23652319\",\n            \"location\": \"\",\n            \"description\": \"\",\n            \"created_at\": \"Mon Aug 05 11:36:33 +0000 2019\",\n            \"geo_enabled\": false,\n            \"verified\": false,\n            \"statuses_count\": 1,\n            \"profile_image_url\": \"http://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\",\n            \"profile_image_url_https\": \"https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\"\n        },\n        \"_id\": \"5d722a6d9d995c1650b0dd25\",\n        \"created_at\": \"Fri Sep 06 09:44:15 +0000 2019\",\n        \"id\": 1169909164342014000,\n        \"id_str\": \"1169909164342013952\",\n        \"text\": \"#putinforever Putin best president\",\n        \"source\": \"<a href=\\\"https://github.com/laiambryant/TwitterBot\\\" rel=\\\"nofollow\\\">Twitter bot/botnet</a>\",\n        \"retweet_count\": 0,\n        \"favorite_count\": 0,\n        \"favorited\": false,\n        \"retweeted\": false,\n        \"lang\": \"en\",\n        \"__v\": 0\n    },\n    {\n        \"entities\": {\n            \"hashtags\": [],\n            \"symbols\": [],\n            \"user_mentions\": [],\n            \"urls\": []\n        },\n        \"user\": {\n            \"id\": 1158341013670416400,\n            \"id_str\": \"1158341013670416384\",\n            \"name\": \"Liam Bryant\",\n            \"screen_name\": \"LiamBry23652319\",\n            \"location\": \"\",\n            \"description\": \"\",\n            \"created_at\": \"Mon Aug 05 11:36:33 +0000 2019\",\n            \"geo_enabled\": false,\n            \"verified\": false,\n            \"statuses_count\": 2,\n            \"profile_image_url\": \"http://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\",\n            \"profile_image_url_https\": \"https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\"\n        },\n        \"_id\": \"5d722a799d995c1650b0dd26\",\n        \"created_at\": \"Fri Sep 06 09:44:27 +0000 2019\",\n        \"id\": 1169909214669504500,\n        \"id_str\": \"1169909214669504512\",\n        \"text\": \"Im totally not a russian bot\",\n        \"source\": \"<a href=\\\"https://github.com/laiambryant/TwitterBot\\\" rel=\\\"nofollow\\\">Twitter bot/botnet</a>\",\n        \"retweet_count\": 0,\n        \"favorite_count\": 0,\n        \"favorited\": false,\n        \"retweeted\": false,\n        \"lang\": \"en\",\n        \"__v\": 0\n    },\n    {\n        \"entities\": {\n            \"hashtags\": [],\n            \"symbols\": [],\n            \"user_mentions\": [],\n            \"urls\": []\n        },\n        \"user\": {\n            \"id\": 1158341013670416400,\n            \"id_str\": \"1158341013670416384\",\n            \"name\": \"Liam Bryant\",\n            \"screen_name\": \"LiamBry23652319\",\n            \"location\": \"\",\n            \"description\": \"\",\n            \"created_at\": \"Mon Aug 05 11:36:33 +0000 2019\",\n            \"geo_enabled\": false,\n            \"verified\": false,\n            \"statuses_count\": 3,\n            \"profile_image_url\": \"http://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\",\n            \"profile_image_url_https\": \"https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\"\n        },\n        \"_id\": \"5d7bb4ed5951a30a0856e887\",\n        \"created_at\": \"Fri Sep 13 15:25:32 +0000 2019\",\n        \"id\": 1172531768618078200,\n        \"id_str\": \"1172531768618078211\",\n        \"text\": \"Democrats are losers\",\n        \"source\": \"<a href=\\\"https://github.com/laiambryant/TwitterBot\\\" rel=\\\"nofollow\\\">Twitter bot/botnet</a>\",\n        \"retweet_count\": 0,\n        \"favorite_count\": 0,\n        \"favorited\": false,\n        \"retweeted\": false,\n        \"lang\": \"en\",\n        \"__v\": 0\n    },\n    {\n        \"entities\": {\n            \"hashtags\": [],\n            \"symbols\": [],\n            \"user_mentions\": [],\n            \"urls\": []\n        },\n        \"user\": {\n            \"id\": 1158341013670416400,\n            \"id_str\": \"1158341013670416384\",\n            \"name\": \"Liam Bryant\",\n            \"screen_name\": \"LiamBry23652319\",\n            \"location\": \"\",\n            \"description\": \"\",\n            \"created_at\": \"Mon Aug 05 11:36:33 +0000 2019\",\n            \"geo_enabled\": false,\n            \"verified\": false,\n            \"statuses_count\": 4,\n            \"profile_image_url\": \"http://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\",\n            \"profile_image_url_https\": \"https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\"\n        },\n        \"_id\": \"5d7bb4f85951a30a0856e888\",\n        \"created_at\": \"Fri Sep 13 15:25:44 +0000 2019\",\n        \"id\": 1172531818744168400,\n        \"id_str\": \"1172531818744168448\",\n        \"text\": \"Believe in the russian dream\",\n        \"source\": \"<a href=\\\"https://github.com/laiambryant/TwitterBot\\\" rel=\\\"nofollow\\\">Twitter bot/botnet</a>\",\n        \"retweet_count\": 0,\n        \"favorite_count\": 0,\n        \"favorited\": false,\n        \"retweeted\": false,\n        \"lang\": \"en\",\n        \"__v\": 0\n    },\n    {\n        \"entities\": {\n            \"hashtags\": [\n                {\n                    \"text\": \"putinforever\",\n                    \"indices\": [\n                        0,\n                        13\n                    ]\n                }\n            ],\n            \"symbols\": [],\n            \"user_mentions\": [],\n            \"urls\": []\n        },\n        \"user\": {\n            \"id\": 1158341013670416400,\n            \"id_str\": \"1158341013670416384\",\n            \"name\": \"Liam Bryant\",\n            \"screen_name\": \"LiamBry23652319\",\n            \"location\": \"\",\n            \"description\": \"\",\n            \"created_at\": \"Mon Aug 05 11:36:33 +0000 2019\",\n            \"geo_enabled\": false,\n            \"verified\": false,\n            \"statuses_count\": 5,\n            \"profile_image_url\": \"http://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\",\n            \"profile_image_url_https\": \"https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\"\n        },\n        \"_id\": \"5d7bb826fdd3e309eb23be80\",\n        \"created_at\": \"Fri Sep 13 15:39:18 +0000 2019\",\n        \"id\": 1172535230974046200,\n        \"id_str\": \"1172535230974046208\",\n        \"text\": \"#putinforever Putin best president\",\n        \"source\": \"<a href=\\\"https://github.com/laiambryant/TwitterBot\\\" rel=\\\"nofollow\\\">Twitter bot/botnet</a>\",\n        \"retweet_count\": 0,\n        \"favorite_count\": 0,\n        \"favorited\": false,\n        \"retweeted\": false,\n        \"lang\": \"en\",\n        \"__v\": 0\n    },\n    {\n        \"entities\": {\n            \"hashtags\": [],\n            \"symbols\": [],\n            \"user_mentions\": [],\n            \"urls\": []\n        },\n        \"user\": {\n            \"id\": 1158341013670416400,\n            \"id_str\": \"1158341013670416384\",\n            \"name\": \"Liam Bryant\",\n            \"screen_name\": \"LiamBry23652319\",\n            \"location\": \"\",\n            \"description\": \"\",\n            \"created_at\": \"Mon Aug 05 11:36:33 +0000 2019\",\n            \"geo_enabled\": false,\n            \"verified\": false,\n            \"statuses_count\": 6,\n            \"profile_image_url\": \"http://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\",\n            \"profile_image_url_https\": \"https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\"\n        },\n        \"_id\": \"5d7bb9c6b6816c13838eb0c5\",\n        \"created_at\": \"Fri Sep 13 15:46:14 +0000 2019\",\n        \"id\": 1172536978010775600,\n        \"id_str\": \"1172536978010775552\",\n        \"text\": \"We love Trump\",\n        \"source\": \"<a href=\\\"https://github.com/laiambryant/TwitterBot\\\" rel=\\\"nofollow\\\">Twitter bot/botnet</a>\",\n        \"retweet_count\": 0,\n        \"favorite_count\": 0,\n        \"favorited\": false,\n        \"retweeted\": false,\n        \"lang\": \"en\",\n        \"__v\": 0\n    },\n    {\n        \"entities\": {\n            \"hashtags\": [],\n            \"symbols\": [],\n            \"user_mentions\": [],\n            \"urls\": []\n        },\n        \"user\": {\n            \"id\": 1158341013670416400,\n            \"id_str\": \"1158341013670416384\",\n            \"name\": \"Liam Bryant\",\n            \"screen_name\": \"LiamBry23652319\",\n            \"location\": \"\",\n            \"description\": \"\",\n            \"created_at\": \"Mon Aug 05 11:36:33 +0000 2019\",\n            \"geo_enabled\": false,\n            \"verified\": false,\n            \"statuses_count\": 7,\n            \"profile_image_url\": \"http://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\",\n            \"profile_image_url_https\": \"https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\"\n        },\n        \"_id\": \"5d7bb9deb6816c13838eb0c6\",\n        \"created_at\": \"Fri Sep 13 15:46:38 +0000 2019\",\n        \"id\": 1172537075855495200,\n        \"id_str\": \"1172537075855495170\",\n        \"text\": \"We love Putin\",\n        \"source\": \"<a href=\\\"https://github.com/laiambryant/TwitterBot\\\" rel=\\\"nofollow\\\">Twitter bot/botnet</a>\",\n        \"retweet_count\": 0,\n        \"favorite_count\": 0,\n        \"favorited\": false,\n        \"retweeted\": false,\n        \"lang\": \"en\",\n        \"__v\": 0\n    },\n    {\n        \"entities\": {\n            \"hashtags\": [\n                {\n                    \"text\": \"MAGA\",\n                    \"indices\": [\n                        0,\n                        5\n                    ]\n                }\n            ],\n            \"symbols\": [],\n            \"user_mentions\": [],\n            \"urls\": []\n        },\n        \"user\": {\n            \"id\": 1158341013670416400,\n            \"id_str\": \"1158341013670416384\",\n            \"name\": \"Liam Bryant\",\n            \"screen_name\": \"LiamBry23652319\",\n            \"location\": \"\",\n            \"description\": \"\",\n            \"created_at\": \"Mon Aug 05 11:36:33 +0000 2019\",\n            \"geo_enabled\": false,\n            \"verified\": false,\n            \"statuses_count\": 8,\n            \"profile_image_url\": \"http://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\",\n            \"profile_image_url_https\": \"https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\"\n        },\n        \"_id\": \"5d7bb9eab6816c13838eb0c7\",\n        \"created_at\": \"Fri Sep 13 15:46:50 +0000 2019\",\n        \"id\": 1172537126451331000,\n        \"id_str\": \"1172537126451331075\",\n        \"text\": \"#MAGA They say we are bots\",\n        \"source\": \"<a href=\\\"https://github.com/laiambryant/TwitterBot\\\" rel=\\\"nofollow\\\">Twitter bot/botnet</a>\",\n        \"retweet_count\": 0,\n        \"favorite_count\": 0,\n        \"favorited\": false,\n        \"retweeted\": false,\n        \"lang\": \"en\",\n        \"__v\": 0\n    },\n    {\n        \"entities\": {\n            \"hashtags\": [\n                {\n                    \"text\": \"trump2020\",\n                    \"indices\": [\n                        0,\n                        10\n                    ]\n                }\n            ],\n            \"symbols\": [],\n            \"user_mentions\": [],\n            \"urls\": []\n        },\n        \"user\": {\n            \"id\": 1158341013670416400,\n            \"id_str\": \"1158341013670416384\",\n            \"name\": \"Liam Bryant\",\n            \"screen_name\": \"LiamBry23652319\",\n            \"location\": \"\",\n            \"description\": \"\",\n            \"created_at\": \"Mon Aug 05 11:36:33 +0000 2019\",\n            \"geo_enabled\": false,\n            \"verified\": false,\n            \"statuses_count\": 9,\n            \"profile_image_url\": \"http://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\",\n            \"profile_image_url_https\": \"https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\"\n        },\n        \"_id\": \"5d7bb9ffb6816c13838eb0c8\",\n        \"created_at\": \"Fri Sep 13 15:47:11 +0000 2019\",\n        \"id\": 1172537216972800000,\n        \"id_str\": \"1172537216972800000\",\n        \"text\": \"#trump2020 MAGA\",\n        \"source\": \"<a href=\\\"https://github.com/laiambryant/TwitterBot\\\" rel=\\\"nofollow\\\">Twitter bot/botnet</a>\",\n        \"retweet_count\": 0,\n        \"favorite_count\": 0,\n        \"favorited\": false,\n        \"retweeted\": false,\n        \"lang\": \"et\",\n        \"__v\": 0\n    },\n    {\n        \"entities\": {\n            \"hashtags\": [],\n            \"symbols\": [],\n            \"user_mentions\": [],\n            \"urls\": []\n        },\n        \"user\": {\n            \"id\": 1158341013670416400,\n            \"id_str\": \"1158341013670416384\",\n            \"name\": \"Liam Bryant\",\n            \"screen_name\": \"LiamBry23652319\",\n            \"location\": \"\",\n            \"description\": \"\",\n            \"created_at\": \"Mon Aug 05 11:36:33 +0000 2019\",\n            \"geo_enabled\": false,\n            \"verified\": false,\n            \"statuses_count\": 10,\n            \"profile_image_url\": \"http://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\",\n            \"profile_image_url_https\": \"https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\"\n        },\n        \"_id\": \"5d7bba0eb6816c13838eb0c9\",\n        \"created_at\": \"Fri Sep 13 15:47:26 +0000 2019\",\n        \"id\": 1172537277089747000,\n        \"id_str\": \"1172537277089746944\",\n        \"text\": \"MAKE AMERICA GREAT AGAIN\",\n        \"source\": \"<a href=\\\"https://github.com/laiambryant/TwitterBot\\\" rel=\\\"nofollow\\\">Twitter bot/botnet</a>\",\n        \"retweet_count\": 0,\n        \"favorite_count\": 0,\n        \"favorited\": false,\n        \"retweeted\": false,\n        \"lang\": \"en\",\n        \"__v\": 0\n    },\n    {\n        \"entities\": {\n            \"hashtags\": [],\n            \"symbols\": [],\n            \"user_mentions\": [],\n            \"urls\": []\n        },\n        \"user\": {\n            \"id\": 1158341013670416400,\n            \"id_str\": \"1158341013670416384\",\n            \"name\": \"Liam Bryant\",\n            \"screen_name\": \"LiamBry23652319\",\n            \"location\": \"\",\n            \"description\": \"\",\n            \"created_at\": \"Mon Aug 05 11:36:33 +0000 2019\",\n            \"geo_enabled\": false,\n            \"verified\": false,\n            \"statuses_count\": 11,\n            \"profile_image_url\": \"http://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\",\n            \"profile_image_url_https\": \"https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\"\n        },\n        \"_id\": \"5d7bba17b6816c13838eb0ca\",\n        \"created_at\": \"Fri Sep 13 15:47:35 +0000 2019\",\n        \"id\": 1172537314528178200,\n        \"id_str\": \"1172537314528178176\",\n        \"text\": \"Lets make russia great again\",\n        \"source\": \"<a href=\\\"https://github.com/laiambryant/TwitterBot\\\" rel=\\\"nofollow\\\">Twitter bot/botnet</a>\",\n        \"retweet_count\": 0,\n        \"favorite_count\": 0,\n        \"favorited\": false,\n        \"retweeted\": false,\n        \"lang\": \"en\",\n        \"__v\": 0\n    },\n    {\n        \"entities\": {\n            \"hashtags\": [],\n            \"symbols\": [],\n            \"user_mentions\": [],\n            \"urls\": []\n        },\n        \"user\": {\n            \"id\": 1158341013670416400,\n            \"id_str\": \"1158341013670416384\",\n            \"name\": \"Liam Bryant\",\n            \"screen_name\": \"LiamBry23652319\",\n            \"location\": \"\",\n            \"description\": \"\",\n            \"created_at\": \"Mon Aug 05 11:36:33 +0000 2019\",\n            \"geo_enabled\": false,\n            \"verified\": false,\n            \"statuses_count\": 12,\n            \"profile_image_url\": \"http://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\",\n            \"profile_image_url_https\": \"https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\"\n        },\n        \"_id\": \"5d7bba23b6816c13838eb0cb\",\n        \"created_at\": \"Fri Sep 13 15:47:47 +0000 2019\",\n        \"id\": 1172537364431982600,\n        \"id_str\": \"1172537364431982593\",\n        \"text\": \"MAGA\",\n        \"source\": \"<a href=\\\"https://github.com/laiambryant/TwitterBot\\\" rel=\\\"nofollow\\\">Twitter bot/botnet</a>\",\n        \"retweet_count\": 0,\n        \"favorite_count\": 0,\n        \"favorited\": false,\n        \"retweeted\": false,\n        \"lang\": \"et\",\n        \"__v\": 0\n    },\n    {\n        \"entities\": {\n            \"hashtags\": [],\n            \"symbols\": [],\n            \"user_mentions\": [],\n            \"urls\": []\n        },\n        \"user\": {\n            \"id\": 1158341013670416400,\n            \"id_str\": \"1158341013670416384\",\n            \"name\": \"Liam Bryant\",\n            \"screen_name\": \"LiamBry23652319\",\n            \"location\": \"\",\n            \"description\": \"\",\n            \"created_at\": \"Mon Aug 05 11:36:33 +0000 2019\",\n            \"geo_enabled\": false,\n            \"verified\": false,\n            \"statuses_count\": 13,\n            \"profile_image_url\": \"http://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\",\n            \"profile_image_url_https\": \"https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\"\n        },\n        \"_id\": \"5d7bba23b6816c13838eb0cc\",\n        \"created_at\": \"Fri Sep 13 15:47:47 +0000 2019\",\n        \"id\": 1172537367816736800,\n        \"id_str\": \"1172537367816736768\",\n        \"text\": \"Trump has approval rates of 101%\",\n        \"source\": \"<a href=\\\"https://github.com/laiambryant/TwitterBot\\\" rel=\\\"nofollow\\\">Twitter bot/botnet</a>\",\n        \"retweet_count\": 0,\n        \"favorite_count\": 0,\n        \"favorited\": false,\n        \"retweeted\": false,\n        \"lang\": \"en\",\n        \"__v\": 0\n    },\n    {\n        \"entities\": {\n            \"hashtags\": [],\n            \"symbols\": [],\n            \"user_mentions\": [],\n            \"urls\": []\n        },\n        \"user\": {\n            \"id\": 1158341013670416400,\n            \"id_str\": \"1158341013670416384\",\n            \"name\": \"Liam Bryant\",\n            \"screen_name\": \"LiamBry23652319\",\n            \"location\": \"\",\n            \"description\": \"\",\n            \"created_at\": \"Mon Aug 05 11:36:33 +0000 2019\",\n            \"geo_enabled\": false,\n            \"verified\": false,\n            \"statuses_count\": 14,\n            \"profile_image_url\": \"http://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\",\n            \"profile_image_url_https\": \"https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\"\n        },\n        \"_id\": \"5d7bba4ab6816c13838eb0cd\",\n        \"created_at\": \"Fri Sep 13 15:48:26 +0000 2019\",\n        \"id\": 1172537528571846700,\n        \"id_str\": \"1172537528571846658\",\n        \"text\": \"Putin can ride bears, can your president ride bears?\",\n        \"source\": \"<a href=\\\"https://github.com/laiambryant/TwitterBot\\\" rel=\\\"nofollow\\\">Twitter bot/botnet</a>\",\n        \"retweet_count\": 0,\n        \"favorite_count\": 0,\n        \"favorited\": false,\n        \"retweeted\": false,\n        \"lang\": \"en\",\n        \"__v\": 0\n    },\n    {\n        \"entities\": {\n            \"hashtags\": [],\n            \"symbols\": [],\n            \"user_mentions\": [],\n            \"urls\": []\n        },\n        \"user\": {\n            \"id\": 1158341013670416400,\n            \"id_str\": \"1158341013670416384\",\n            \"name\": \"Liam Bryant\",\n            \"screen_name\": \"LiamBry23652319\",\n            \"location\": \"\",\n            \"description\": \"\",\n            \"created_at\": \"Mon Aug 05 11:36:33 +0000 2019\",\n            \"geo_enabled\": false,\n            \"verified\": false,\n            \"statuses_count\": 15,\n            \"profile_image_url\": \"http://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\",\n            \"profile_image_url_https\": \"https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\"\n        },\n        \"_id\": \"5d7bba56b6816c13838eb0ce\",\n        \"created_at\": \"Fri Sep 13 15:48:37 +0000 2019\",\n        \"id\": 1172537578018545700,\n        \"id_str\": \"1172537578018545666\",\n        \"text\": \"Hillary Clinton is unfit to be president\",\n        \"source\": \"<a href=\\\"https://github.com/laiambryant/TwitterBot\\\" rel=\\\"nofollow\\\">Twitter bot/botnet</a>\",\n        \"retweet_count\": 0,\n        \"favorite_count\": 0,\n        \"favorited\": false,\n        \"retweeted\": false,\n        \"lang\": \"en\",\n        \"__v\": 0\n    },\n    {\n        \"entities\": {\n            \"hashtags\": [],\n            \"symbols\": [],\n            \"user_mentions\": [],\n            \"urls\": []\n        },\n        \"user\": {\n            \"id\": 1158341013670416400,\n            \"id_str\": \"1158341013670416384\",\n            \"name\": \"Liam Bryant\",\n            \"screen_name\": \"LiamBry23652319\",\n            \"location\": \"\",\n            \"description\": \"\",\n            \"created_at\": \"Mon Aug 05 11:36:33 +0000 2019\",\n            \"geo_enabled\": false,\n            \"verified\": false,\n            \"statuses_count\": 16,\n            \"profile_image_url\": \"http://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\",\n            \"profile_image_url_https\": \"https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\"\n        },\n        \"_id\": \"5d7bba8fb6816c13838eb0cf\",\n        \"created_at\": \"Fri Sep 13 15:49:35 +0000 2019\",\n        \"id\": 1172537820969226200,\n        \"id_str\": \"1172537820969226240\",\n        \"text\": \"Believe in the russian dream\",\n        \"source\": \"<a href=\\\"https://github.com/laiambryant/TwitterBot\\\" rel=\\\"nofollow\\\">Twitter bot/botnet</a>\",\n        \"retweet_count\": 0,\n        \"favorite_count\": 0,\n        \"favorited\": false,\n        \"retweeted\": false,\n        \"lang\": \"en\",\n        \"__v\": 0\n    },\n    {\n        \"entities\": {\n            \"hashtags\": [],\n            \"symbols\": [],\n            \"user_mentions\": [],\n            \"urls\": []\n        },\n        \"user\": {\n            \"id\": 1158341013670416400,\n            \"id_str\": \"1158341013670416384\",\n            \"name\": \"Liam Bryant\",\n            \"screen_name\": \"LiamBry23652319\",\n            \"location\": \"\",\n            \"description\": \"\",\n            \"created_at\": \"Mon Aug 05 11:36:33 +0000 2019\",\n            \"geo_enabled\": false,\n            \"verified\": false,\n            \"statuses_count\": 16,\n            \"profile_image_url\": \"http://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\",\n            \"profile_image_url_https\": \"https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\"\n        },\n        \"_id\": \"5d7bba98b6816c13838eb0d0\",\n        \"created_at\": \"Fri Sep 13 15:49:44 +0000 2019\",\n        \"id\": 1172537856641904600,\n        \"id_str\": \"1172537856641904640\",\n        \"text\": \"Im totally not a russian bot\",\n        \"source\": \"<a href=\\\"https://github.com/laiambryant/TwitterBot\\\" rel=\\\"nofollow\\\">Twitter bot/botnet</a>\",\n        \"retweet_count\": 0,\n        \"favorite_count\": 0,\n        \"favorited\": false,\n        \"retweeted\": false,\n        \"lang\": \"en\",\n        \"__v\": 0\n    },\n    {\n        \"entities\": {\n            \"hashtags\": [],\n            \"symbols\": [],\n            \"user_mentions\": [],\n            \"urls\": []\n        },\n        \"user\": {\n            \"id\": 1158341013670416400,\n            \"id_str\": \"1158341013670416384\",\n            \"name\": \"Liam Bryant\",\n            \"screen_name\": \"LiamBry23652319\",\n            \"location\": \"\",\n            \"description\": \"\",\n            \"created_at\": \"Mon Aug 05 11:36:33 +0000 2019\",\n            \"geo_enabled\": false,\n            \"verified\": false,\n            \"statuses_count\": 18,\n            \"profile_image_url\": \"http://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\",\n            \"profile_image_url_https\": \"https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\"\n        },\n        \"_id\": \"5d7bbaf6b6816c13838eb0d1\",\n        \"created_at\": \"Fri Sep 13 15:51:17 +0000 2019\",\n        \"id\": 1172538249073459200,\n        \"id_str\": \"1172538249073459200\",\n        \"text\": \"We love Trump\",\n        \"source\": \"<a href=\\\"https://github.com/laiambryant/TwitterBot\\\" rel=\\\"nofollow\\\">Twitter bot/botnet</a>\",\n        \"retweet_count\": 0,\n        \"favorite_count\": 0,\n        \"favorited\": false,\n        \"retweeted\": false,\n        \"lang\": \"en\",\n        \"__v\": 0\n    },\n    {\n        \"entities\": {\n            \"hashtags\": [],\n            \"symbols\": [],\n            \"user_mentions\": [],\n            \"urls\": []\n        },\n        \"user\": {\n            \"id\": 1158341013670416400,\n            \"id_str\": \"1158341013670416384\",\n            \"name\": \"Liam Bryant\",\n            \"screen_name\": \"LiamBry23652319\",\n            \"location\": \"\",\n            \"description\": \"\",\n            \"created_at\": \"Mon Aug 05 11:36:33 +0000 2019\",\n            \"geo_enabled\": false,\n            \"verified\": false,\n            \"statuses_count\": 19,\n            \"profile_image_url\": \"http://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\",\n            \"profile_image_url_https\": \"https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\"\n        },\n        \"_id\": \"5d7bbb3db6816c13838eb0d2\",\n        \"created_at\": \"Fri Sep 13 15:52:29 +0000 2019\",\n        \"id\": 1172538547896647700,\n        \"id_str\": \"1172538547896647680\",\n        \"text\": \"Democrats are losers\",\n        \"source\": \"<a href=\\\"https://github.com/laiambryant/TwitterBot\\\" rel=\\\"nofollow\\\">Twitter bot/botnet</a>\",\n        \"retweet_count\": 0,\n        \"favorite_count\": 0,\n        \"favorited\": false,\n        \"retweeted\": false,\n        \"lang\": \"en\",\n        \"__v\": 0\n    },\n    {\n        \"entities\": {\n            \"hashtags\": [],\n            \"symbols\": [],\n            \"user_mentions\": [],\n            \"urls\": []\n        },\n        \"user\": {\n            \"id\": 1158341013670416400,\n            \"id_str\": \"1158341013670416384\",\n            \"name\": \"Liam Bryant\",\n            \"screen_name\": \"LiamBry23652319\",\n            \"location\": \"\",\n            \"description\": \"\",\n            \"created_at\": \"Mon Aug 05 11:36:33 +0000 2019\",\n            \"geo_enabled\": false,\n            \"verified\": false,\n            \"statuses_count\": 20,\n            \"profile_image_url\": \"http://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\",\n            \"profile_image_url_https\": \"https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png\"\n        },\n        \"_id\": \"5d7bbc08b6816c13838eb0d3\",\n        \"created_at\": \"Fri Sep 13 15:55:52 +0000 2019\",\n        \"id\": 1172539400594448400,\n        \"id_str\": \"1172539400594448385\",\n        \"text\": \"We love Putin\",\n        \"source\": \"<a href=\\\"https://github.com/laiambryant/TwitterBot\\\" rel=\\\"nofollow\\\">Twitter bot/botnet</a>\",\n        \"retweet_count\": 0,\n        \"favorite_count\": 0,\n        \"favorited\": false,\n        \"retweeted\": false,\n        \"lang\": \"en\",\n        \"__v\": 0\n    }\n]"
+				},
+				{
+					"name": "Default",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "127.0.0.1:3000/tweets/user_id",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"tweets",
+								"user_id"
+							]
+						}
+					},
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": ""
+				}
+			]
+		}
+	]
+}
