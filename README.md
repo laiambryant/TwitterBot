@@ -64,7 +64,7 @@ For PUT and POST Requests (Only available for bots) this is the model for the js
 
 The following are the methods offered by the API.
 
-### **GET** "/bots" 
+### **GET** "api/bots" 
 
 **What Does it do?** Return all bots
 
@@ -74,7 +74,7 @@ Possible error codes:
 >           408:REQUEST TIMEOUT, the timeout is 7 seconds
 >           500:INTERNAL SERVER ERROR
 
-### **GET**    "/bots/names"
+### **GET**    "api/bots/names"
 
 **What Does it do?** Return all bot names
 
@@ -84,7 +84,7 @@ Possible error codes:
 >          408:REQUEST TIMEOUT, the timeout is 7 seconds
 >          500:INTERNAL SERVER ERROR
 
-### **GET** "/bots/ids"
+### **GET** "api/bots/ids"
 
 **What Does it do?** Return all bot ids
 
@@ -94,7 +94,7 @@ Possible error codes:
 >          408:REQUEST TIMEOUT, the timeout is 7 seconds
 >          500:INTERNAL SERVER ERROR
 
-### **GET** "/bots/:id"        
+### **GET** "api/bots/search/:id"        
 
 **What Does it do?** return bot corresponding to the id
 
@@ -104,7 +104,7 @@ Possible error codes:
 >          408:REQUEST TIMEOUT, the timeout is 7 seconds
 >          500:INTERNAL SERVER ERROR
 
-### **GET** "/tweets"        
+### **GET** "api/tweets"        
 
 **What Does it do?** Return all tweets
 
@@ -114,7 +114,7 @@ Possible error codes:
 >          408:REQUEST TIMEOUT, the timeout is 7 seconds
 >          500:INTERNAL SERVER ERROR
 
-### **GET** "/tweets/:id"        
+### **GET** "api/tweets/search/:tweet_id"        
 
 **What Does it do?** Returns tweet corresponding to the id
 
@@ -124,7 +124,7 @@ Possible error codes:
 >          408:REQUEST TIMEOUT, the timeout is 7 seconds
 >          500:INTERNAL SERVER ERROR
 
-### **GET** "/tweets/:user_id"
+### **GET** "api/tweets/searchUID/:user_id"
 **What Does it do?** Returns all tweets from the user corresponding to the id
 Possible error codes:
 >          200:OK
@@ -132,14 +132,14 @@ Possible error codes:
 >          408:REQUEST TIMEOUT, the timeout is 7 seconds
 >          500:INTERNAL SERVER ERROR
 
-### **POST** "/bots"
+### **POST** "api/bots"
 **What Does it do?**Creates a new Bot Instance in the DB. The body must contain json.
 Possible error codes:
 >          200:OK
 >          408:REQUEST TIMEOUT, the timeout is 7 seconds
 >          500:INTERNAL SERVER ERROR
 
-### **PUT** "/bots/:id"
+### **PUT** "api/bots/:id"
 **What Does it do?** Modifies the bot corresponding to the id 
 Possible error codes: Modifies the 
 >          200:OK
@@ -147,7 +147,7 @@ Possible error codes: Modifies the
 >          408:REQUEST TIMEOUT, the timeout is 7 seconds
 >          500:INTERNAL SERVER ERROR
 
-### **DELETE** "/bots/:id"
+### **DELETE** "api/bots/:id"
 **What Does it do?** Deletes the bot corresponding to the id
 Possible error codes:
 >          200:OK
@@ -156,7 +156,7 @@ Possible error codes:
 >          500:INTERNAL SERVER ERROR
 
 ### Authentication
-At the time there is no autentication required, but in the future authentication could be certainly added
+At the time there is no autentication required, but in the future authentication should be certainly added
 
 ### Rate limit
 The only limit is how many requests the server can handle... not a very smart idea but time is limited.
