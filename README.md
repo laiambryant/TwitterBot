@@ -14,3 +14,10 @@ The road map in explaining this twitter bot will be structured in the following 
 
 I hope you'll enjoy using the bot, it's not perfect but it gets the job done and gives a good understanding of how node, web socket, twitter API and RESTful services work. I worked on this project on my own so i had to use some extra middleware to help me develop it in decent time, but i'll explain how you can expand on it in the specific paragraphs you can find on the Wiki on the github page: https://github.com/laiambryant/TwitterBot
 
+# Docker instructions
+
+### To build: (sudo if necessary)
+
+> docker-compose up
+
+If you build though docker you will create an image of a mongodb server to run your local instance of the server. If you want to connect to an external server you have to update the docker-compose.yml file dependencies and the dockerfile.
