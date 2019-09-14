@@ -123,14 +123,14 @@
 
     <div id="Unsubscribe">
       <h3>Press the BETRAY button to logout</h1>
-      <a class = "button" href="/profile/logout">BETRAY THE USSR</a>
+      <a class = "button" href="/profile/logout">BETRAY THE NWO</a>
     </div>
 
     <script>
         var socket = io();
         $("document").ready(function(){
           
-          const ADDR = "http://127.0.0.1:3000";
+          const ADDR = "http://127.0.0.1:8080";
   
           const front_end_socket = io.connect(ADDR);
   
@@ -153,7 +153,7 @@
   
           //Listener for events on the client
           front_end_socket.on("chat", function(data){
-              output.innerHTML += "<p><strong>" + data.username + ":</strong>" + data.message + "</p><br>"
+              output.innerHTML += "<p><strong>" + data.username + ":</strong>" + data.message + "</p>"
           });
   
           });
