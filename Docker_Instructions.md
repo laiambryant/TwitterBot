@@ -1,4 +1,6 @@
-To build: (sudo if necessary)
+# Docker instructions
+
+### To build: (sudo if necessary)
 
 docker-compose up
 
