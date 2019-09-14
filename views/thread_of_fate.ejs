@@ -22,6 +22,17 @@
         background-color: black;
       }
 
+      button{
+        background-color: red;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        font-family: 'Bahianita', cursive;
+        position: relative;
+        left: 43.7%;
+        font-size: 16px;
+      }
 
       input [type = button]{
         background-color: red;
@@ -40,17 +51,32 @@
         color:blue;
         cursor:grabbing;
       } 
+      p{
+        font-family: 'Bahianita', cursive;
+        text-align: center;
+        color:red;
+        font-size:30px;
+      }
     </style>
     <meta charset="utf-8">
     <title>Twitter Botnet</title>
     <link rel="stylesheet" href="/Styles.css">
     <link href="https://fonts.googleapis.com/css?family=Bahianita&display=swap" rel="stylesheet">
-  </head>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+    crossorigin="anonymous"> </script>  </head>
   <body>
     <H1 class = "title"> добро пожаловать <H2>
     <div id = "homepage">
       <h1>The Red Thread of Fate has been tied</h1>
       <h1>to your profile</h1>
+    </div>
+    
+    <h1>What is the Red Thread</h1>
+    <button>Click Here to Read More</button>
+
+    <div id = "view">
+
     </div>
 
     <div class = "chat">
@@ -62,5 +88,12 @@
       <h3>Press the BETRAY button to logout</h1>
       <a class = "button" href="/profile/logout">BETRAY THE USSR</a>
     </div>
+    <script>
+      $(document).ready(function(){
+        $("button").click(function(){
+          $("#view").load("/TOF.htm");
+        });
+      });
+    </script>
   </body>
 </html>

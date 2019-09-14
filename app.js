@@ -14,9 +14,9 @@ const socket = require("socket.io");
 const app = express();
 
 //the connection string has the following format
-const CONNECTIONSTRING = 'mongodb://localhost/botnet';
+const CONNECTIONSTRING = 'mongodb://mongo:27017/botnet';
 //port connected to on the Localhost
-const PORT = 3000;
+const PORT = 8080;
 //default console message
 const consoleMsg = function(){console.log("Server Listening for requests at the port: " + PORT);};
 //Sessions Key

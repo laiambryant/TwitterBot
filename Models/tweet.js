@@ -9,7 +9,10 @@ const tweetSchema = new schema({
     id: Number,
     id_str: String,
     text: String,
-    entities: { hashtags: Array, symbols: Array, user_mentions: Array, urls: Array },
+    entities: { hashtags: Array,
+                symbols: Array,
+                user_mentions: Array, 
+                urls: Array },
     source: String,
 
     user:{ 
