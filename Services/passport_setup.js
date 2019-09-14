@@ -1,7 +1,6 @@
 const passport = require("passport");
 const Strategy = require("passport-twitter").Strategy;
 const Keys = require("./Keys");
-const CB_URL =  "http://127.0.0.1:8080/auth/twitter/callback";
 const Bot = require("../Models/bot");
 const trustProxy = false;
 const Utilities = require("./Utility_Functions");
@@ -17,7 +16,7 @@ var user = {
 passport.use(new Strategy({
 
     //Data required for passport Strategy, stored in the Keys file
-    callbackURL: CB_URL,
+    callbackURL: Keys.twitter.CB_URL,
     consumerKey: Keys.twitter.TWITTER_CONSUMER_KEY ,
     consumerSecret: Keys.twitter.TWITTER_CONSUMER_SECRET,
     access_token_key: Keys.twitter.ACCESS_TOKEN,
