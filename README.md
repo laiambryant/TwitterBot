@@ -3,6 +3,8 @@ A simple Twitter bot that uses Twitter API, node, mogoDB and Websocket
 
 Welcome to the TwitterBot. The objective of this twitter bot is to have some fun with the Twitter API showing how easy it can be to post massive amounts of tweets in a short period of time (as many as one per user every 12 seconds).It also implements a Chatroom for users to interact with each other.
 
+To run the Twitter Bot on your device, you must insert your own Keys in the Services/Keys.js file and in the same file you should also insert a custom Secret.
+
 The road map in explaining this twitter bot will be structured in the following way:
 
 * General Information
