@@ -23,3 +23,9 @@ I hope you'll enjoy using the bot, it's not perfect but it gets the job done and
 > docker-compose up
 
 If you build though docker you will create an image of a mongodb server to run your local instance of the server. If you want to connect to an external server you have to update the docker-compose.yml file dependencies and the dockerfile and the value of the CONNECTIONSTRING const in the app.js file
+
+### To stop container: (sudo if necessary)
+
+> docker-compose down
+
+Stops and removes both the mongodb and the twitter-app images
