@@ -1,12 +1,19 @@
 version: "2"
 services:
-  web:
+  twitter-app:
+    container_name: Twitter-botnet
+    restart: always
     build: .
     ports:
-      - "8080:8080"
+      - "3000:3000"
     depends_on:
       - mongo
+    links:
+      - mongo
   mongo:
+    container_name: mongo
     image: mongo
     ports:
       - "27017:27017"
+
+

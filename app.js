@@ -16,18 +16,27 @@ const app = express();
 //the connection string has the following format
 const CONNECTIONSTRING = 'mongodb://mongo:27017/botnet';
 //port connected to on the Localhost
-const PORT = 8080;
+const PORT = 3000;
 //default console message
 const consoleMsg = function(){console.log("Server Listening for requests at the port: " + PORT);};
-//Sessions Key
-const SESSIONS_KEY = Keys.SECRET;
 
 //connect do MongoDb
 //{useNewUrlParser:true} is inserted because the old
 //url parser of mongoose is deprecated. In the future
 //this urlParser will become the standard, so this
 //specification won't be necessary
-mongoose.connect(CONNECTIONSTRING, {useNewUrlParser:true});
+mongoose.connect(
+  CONNECTIONSTRING, 
+  {useNewUrlParser:true,
+  reconnectInterval:1000,
+  connectTimeoutMS:5000,
+  }
+).then(()=>{
+  console.log("Connected to MongoDB")
+}).catch((err)=>{
+  console.log(err)
+});
+  
 //Mongoose version of the promise is deprecated
 //overrided to the global Promise
 mongoose.Promise = global.Promise;
@@ -39,7 +48,7 @@ app.set("view engine", "ejs");
 
 //sessions
 app.use(expressSession({ 
-  secret: SESSIONS_KEY,
+  secret: Keys.SECRET,
   key : "sid",
   cookie: { 
     //1 day
@@ -74,7 +83,7 @@ app.use(function(err,req,res,next){
 });
 
 //listen for requests
-var server = app.listen(process.env.PORT || PORT, consoleMsg);
+var server = app.listen(PORT, consoleMsg);
 
 //WebSocket
 const io = socket(server);

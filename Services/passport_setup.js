@@ -2,7 +2,7 @@ const passport = require("passport");
 const Strategy = require("passport-twitter").Strategy;
 const Keys = require("./Keys");
 const Bot = require("../Models/bot");
-const trustProxy = false;
+const TRUSTPROXY = false;
 const Utilities = require("./Utility_Functions");
 
 var user = {
@@ -22,7 +22,7 @@ passport.use(new Strategy({
     access_token_key: Keys.twitter.ACCESS_TOKEN,
     access_token_secret: Keys.twitter.ACCESS_TOKEN_SECRET,
     //necessary for Oauth 1.0
-    proxy:trustProxy
+    proxy:TRUSTPROXY
 
   },function (access_token, refresh_token, profile, cb) {
     
