@@ -23,7 +23,7 @@
     "twit": "^2.2.11",
     "twitter": "^1.7.1",
     "util": "^0.12.1",
-    "ws": "^7.1.0"
+    "ws": "^7.4.6"
   },
   "devDependencies": {},
   "scripts": {
